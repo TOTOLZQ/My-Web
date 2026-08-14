@@ -486,6 +486,30 @@ html {
     50% { box-shadow: 0 10px 44px rgba(124, 92, 252, 0.4), 0 0 0 8px rgba(124, 92, 252, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7); }
 }
 
+.welcome-tag {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    z-index: 5;
+}
+
+.welcome-tag:active {
+    cursor: grabbing;
+}
+
 .mouse-trail {
     position: fixed;
     inset: 0;
@@ -659,6 +683,85 @@ body {
 .glass > * {
     position: relative;
     z-index: 1;
+}
+
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    color: var(--text);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition), background var(--transition), color var(--transition);
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg) scale(1.06);
+    background: var(--glass-bg-hover);
+    color: var(--accent-light);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle .theme-icon-light {
+    display: none;
+}
+
+:root.light .theme-toggle .theme-icon-dark {
+    display: none;
+}
+
+:root.light .theme-toggle .theme-icon-light {
+    display: block;
+}
+
+#themeToggleWelcome {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 5;
+    width: 38px;
+    height: 38px;
+}
+
+.draggable {
+    user-select: none;
+    touch-action: none;
+    -webkit-user-drag: none;
+}
+
+.draggable.is-dragging {
+    cursor: grabbing !important;
+    transition: none !important;
+    z-index: 99999;
+}
+
+.draggable:not(.welcome-tag):not(.egg-tracker):not(.hero-badge):not(.theme-toggle):not(.welcome-enter) {
+    cursor: grab;
+}
+
+.egg-tracker.draggable,
+.hero-badge.draggable,
+.welcome-enter.draggable,
+.welcome-tag.draggable {
+    cursor: grab;
+}
+
+.egg-tracker.is-dragging,
+.hero-badge.is-dragging,
+.welcome-enter.is-dragging,
+.welcome-tag.is-dragging {
+    cursor: grabbing !important;
 }
 
 a {
@@ -2049,4 +2152,62 @@ a {
 
 .surprise-overlay.show {
     opacity: 1;
+}
+
+:root.light {
+    --bg: #f5f5fa;
+    --bg-secondary: rgba(0, 0, 0, 0.03);
+    --bg-card: rgba(255, 255, 255, 0.7);
+    --bg-card-hover: rgba(255, 255, 255, 0.85);
+    --text: #1a1a2e;
+    --text-muted: rgba(26, 26, 46, 0.72);
+    --text-dim: rgba(26, 26, 46, 0.45);
+    --accent: #7c5cfc;
+    --accent-light: #6c4ce6;
+    --accent-glow: rgba(124, 92, 252, 0.12);
+    --accent-glow-strong: rgba(124, 92, 252, 0.25);
+    --border: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(124, 92, 252, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-bg-hover: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    --glass-blur: blur(20px) saturate(1.5);
+    --glass-shadow:
+        0 8px 32px rgba(124, 92, 252, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+}
+
+:root.light body {
+    background:
+        radial-gradient(ellipse 50% 40% at 20% 10%, rgba(124, 92, 252, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 85% 85%, rgba(34, 211, 238, 0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 30% at 75% 25%, rgba(167, 139, 250, 0.12) 0%, transparent 50%),
+        linear-gradient(135deg, #f5f5fa 0%, #ece8fa 50%, #e0f7fb 100%);
+}
+
+:root.light .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+:root.light .welcome-text {
+    color: var(--text-muted);
+    text-shadow: none;
+}
+
+:root.light .loader-text {
+    color: var(--text-muted);
+}
+
+:root.light .welcome-tag {
+    color: var(--text-muted);
+}
+
+:root.light .timeline-dot {
+    border-color: #fff;
+}
+
+:root.light .card-header {
+    background: rgba(124, 92, 252, 0.04);
 }
