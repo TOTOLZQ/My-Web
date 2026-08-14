@@ -83,6 +83,9 @@
                     <button class="lang-btn" data-lang="cn">中</button>
                     <button class="lang-btn" data-lang="jp">日</button>
                 </div>
+                <div class="nav-auth">
+                    <button class="nav-auth-btn nav-auth-guest" id="navAuthBtn" type="button" data-i18n="nav.signIn">Sign in</button>
+                </div>
                 <button class="theme-toggle" id="themeToggle" title="Toggle light/dark" aria-label="Toggle theme">
                     <svg class="theme-icon-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
                     <svg class="theme-icon-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -460,6 +463,163 @@
     <canvas class="confetti-canvas" id="confettiCanvas"></canvas>
     <div class="particles-layer" id="particlesLayer"></div>
     <div class="mouse-trail" id="mouseTrail"></div>
+
+    <div class="modal" id="authModal" aria-hidden="true">
+        <div class="modal-backdrop" data-close-modal="authModal"></div>
+        <div class="modal-card glass" role="dialog" aria-modal="true" aria-label="Account">
+            <button class="modal-close" type="button" data-close-modal="authModal" aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="auth-logo">
+                <svg viewBox="0 0 120 120" width="68" height="68">
+                    <defs>
+                        <linearGradient id="authGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#7c5cfc"/>
+                            <stop offset="100%" style="stop-color:#22d3ee"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="35" y="35" width="50" height="50" rx="8" fill="none" stroke="url(#authGrad)" stroke-width="3"/>
+                    <text x="60" y="74" text-anchor="middle" fill="url(#authGrad)" font-size="28" font-weight="800" font-family="Inter">li</text>
+                </svg>
+            </div>
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab active" data-auth-tab="signin" data-i18n="auth.signin">Sign in</button>
+                <button type="button" class="auth-tab" data-auth-tab="register" data-i18n="auth.register">Register</button>
+                <button type="button" class="auth-tab" data-auth-tab="admin" data-i18n="auth.admin">Admin</button>
+            </div>
+            <div class="auth-panels">
+                <div class="auth-panel auth-panel-active" data-auth-panel="signin">
+                    <form class="auth-form" data-auth-form="signin" novalidate>
+                        <label class="field">
+                            <span data-i18n="auth.username">Username</span>
+                            <input type="text" name="username" autocomplete="username" required maxlength="32" minlength="2">
+                        </label>
+                        <label class="field">
+                            <span data-i18n="auth.password">Password</span>
+                            <input type="password" name="password" autocomplete="current-password" required minlength="4">
+                        </label>
+                        <div class="auth-hint" data-i18n="auth.hintSignin">New here? Switch to Register above.</div>
+                        <div class="auth-error" id="authSigninError" role="alert" aria-live="polite"></div>
+                        <button type="submit" class="btn btn-primary auth-submit">
+                            <span data-i18n="auth.signinGo">Sign in</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="auth-panel" data-auth-panel="register">
+                    <form class="auth-form" data-auth-form="register" novalidate>
+                        <label class="field">
+                            <span data-i18n="auth.username">Username</span>
+                            <input type="text" name="username" autocomplete="username" required maxlength="32" minlength="2">
+                        </label>
+                        <label class="field">
+                            <span data-i18n="auth.email">Email</span>
+                            <input type="email" name="email" autocomplete="email" required maxlength="64">
+                        </label>
+                        <label class="field">
+                            <span data-i18n="auth.password">Password</span>
+                            <input type="password" name="password" autocomplete="new-password" required minlength="4">
+                        </label>
+                        <label class="field">
+                            <span data-i18n="auth.confirmPassword">Confirm password</span>
+                            <input type="password" name="confirm" autocomplete="new-password" required minlength="4">
+                        </label>
+                        <div class="auth-error" id="authRegisterError" role="alert" aria-live="polite"></div>
+                        <button type="submit" class="btn btn-primary auth-submit">
+                            <span data-i18n="auth.registerGo">Create account</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="auth-panel" data-auth-panel="admin">
+                    <form class="auth-form" data-auth-form="admin" novalidate>
+                        <label class="field">
+                            <span data-i18n="auth.adminPass">Admin password</span>
+                            <input type="password" name="adminPass" autocomplete="off" required>
+                        </label>
+                        <div class="auth-hint" data-i18n="auth.adminHint">Default: admin123 — change it later in Admin panel.</div>
+                        <div class="auth-error" id="authAdminError" role="alert" aria-live="polite"></div>
+                        <button type="submit" class="btn btn-primary auth-submit">
+                            <span data-i18n="auth.adminGo">Enter dashboard</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="adminModal" aria-hidden="true">
+        <div class="modal-backdrop" data-close-modal="adminModal"></div>
+        <div class="modal-card glass admin-card" role="dialog" aria-modal="true" aria-label="Admin dashboard">
+            <button class="modal-close" type="button" data-close-modal="adminModal" aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="admin-head">
+                <div>
+                    <div class="admin-kicker" data-i18n="admin.kicker">Admin Dashboard</div>
+                    <div class="admin-title" data-i18n="admin.title">Site overview</div>
+                </div>
+                <div class="admin-head-actions">
+                    <button type="button" class="btn-ghost admin-btn-ghost" id="adminChpass">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span data-i18n="admin.changePass">Change password</span>
+                    </button>
+                    <button type="button" class="btn-ghost admin-btn-ghost" id="adminLogout">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        <span data-i18n="admin.logout">Sign out</span>
+                    </button>
+                </div>
+            </div>
+            <div class="admin-stats">
+                <div class="admin-stat">
+                    <div class="admin-stat-label" data-i18n="admin.online">Online visitors</div>
+                    <div class="admin-stat-value" id="adminOnline">0</div>
+                    <div class="admin-stat-foot" data-i18n="admin.onlineFoot">Live · heartbeat</div>
+                </div>
+                <div class="admin-stat admin-stat-primary">
+                    <div class="admin-stat-label" data-i18n="admin.visits">Total visits</div>
+                    <div class="admin-stat-value" id="adminVisits">0</div>
+                    <div class="admin-stat-foot" data-i18n="admin.visitsFoot">All time · page loads</div>
+                </div>
+                <div class="admin-stat admin-stat-cyan">
+                    <div class="admin-stat-label" data-i18n="admin.users">Registered users</div>
+                    <div class="admin-stat-value" id="adminUsers">0</div>
+                    <div class="admin-stat-foot" data-i18n="admin.usersFoot">Accounts in storage</div>
+                </div>
+                <div class="admin-stat admin-stat-green">
+                    <div class="admin-stat-label" data-i18n="admin.eggs">Eggs found</div>
+                    <div class="admin-stat-value" id="adminEggs">0</div>
+                    <div class="admin-stat-foot" data-i18n="admin.eggsFoot">This session</div>
+                </div>
+            </div>
+            <div class="admin-sub">
+                <div class="admin-sub-title" data-i18n="admin.usersTitle">Registered users</div>
+                <div class="admin-table-wrap">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="admin.thUsername">Username</th>
+                                <th data-i18n="admin.thEmail">Email</th>
+                                <th data-i18n="admin.thCreated">Created</th>
+                                <th data-i18n="admin.thSeen">Last seen</th>
+                                <th data-i18n="admin.thOnline">Online</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUsersBody">
+                            <tr><td colspan="6" class="admin-empty" data-i18n="admin.empty">No registered users yet.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="admin-safe">
+                <label class="toggle">
+                    <input type="checkbox" id="adminSafeDelete">
+                    <span class="toggle-track"><span class="toggle-knob"></span></span>
+                    <span class="toggle-label" data-i18n="admin.safeDelete">Enable delete</span>
+                </label>
+                <div class="admin-safe-hint" data-i18n="admin.safeHint">Pure-frontend storage — data lives in your browser / device only.</div>
+            </div>
+        </div>
+    </div>
 
     <div class="egg-tracker" id="eggTracker">
         <span class="egg-label" data-i18n="egg.collected">Eggs</span>
