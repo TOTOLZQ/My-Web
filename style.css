@@ -2156,3 +2156,626 @@ a {
 .surprise-overlay.show {
     opacity: 1;
 }
+
+.lvgl-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.lvgl-overlay.open {
+    display: flex;
+    animation: lvgl-fade 0.3s ease;
+}
+
+@keyframes lvgl-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.lvgl-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 15, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.lvgl-modal {
+    position: relative;
+    z-index: 1;
+    width: min(520px, 100%);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    padding: 28px;
+    border-radius: 28px;
+    animation: lvgl-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes lvgl-pop {
+    from { opacity: 0; transform: scale(0.92) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.lvgl-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+}
+
+.lvgl-close:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    transform: rotate(90deg);
+}
+
+.lvgl-header {
+    margin-bottom: 18px;
+    padding-right: 44px;
+}
+
+.lvgl-title {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+
+.lvgl-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+}
+
+.lvgl-device {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.lvgl-bezel {
+    position: relative;
+    padding: 14px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #1a1a2e, #0d0d1f);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.lvgl-bezel::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.lvgl-screen {
+    width: 280px;
+    height: 320px;
+    background: linear-gradient(160deg, #0c1428, #0a0f1e);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: #e8ecff;
+    font-family: var(--font-mono);
+    position: relative;
+    box-shadow:
+        inset 0 0 0 1px rgba(124, 92, 252, 0.15),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.lvgl-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px),
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(124, 92, 252, 0.12), transparent 70%);
+    border-radius: 10px;
+}
+
+.lvgl-statusbar {
+    height: 22px;
+    padding: 0 10px;
+    background: linear-gradient(180deg, rgba(124, 92, 252, 0.18), rgba(124, 92, 252, 0.05));
+    border-bottom: 1px solid rgba(124, 92, 252, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.lvgl-sb-icons {
+    display: flex;
+    gap: 4px;
+    color: #c8d0ff;
+}
+
+.lvgl-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.lvgl-view {
+    position: absolute;
+    inset: 0;
+    padding: 10px;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateX(8px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    scrollbar-width: none;
+}
+
+.lvgl-view::-webkit-scrollbar {
+    display: none;
+}
+
+.lvgl-view-active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.lvgl-gauge-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.lvgl-gauge {
+    width: 160px;
+    height: 160px;
+    filter: drop-shadow(0 4px 12px rgba(124, 92, 252, 0.3));
+}
+
+.gauge-needle {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: 100px 150px;
+}
+
+.gauge-fill {
+    transition: stroke-dashoffset 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lvgl-gauge-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: -8px;
+    width: 100%;
+    padding: 0 4px;
+}
+
+.lvgl-mini-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(124, 92, 252, 0.4), rgba(124, 92, 252, 0.2));
+    color: #fff;
+    border: 1px solid rgba(124, 92, 252, 0.4);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.lvgl-mini-btn:hover {
+    background: linear-gradient(180deg, rgba(124, 92, 252, 0.6), rgba(124, 92, 252, 0.3));
+}
+
+.lvgl-mini-btn:active {
+    transform: scale(0.9);
+}
+
+.lvgl-range {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    cursor: pointer;
+}
+
+.lvgl-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #a78bfa, #7c5cfc);
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    cursor: grab;
+}
+
+.lvgl-range::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #a78bfa, #7c5cfc);
+    border: 2px solid #fff;
+    cursor: grab;
+}
+
+.lvgl-range-full {
+    width: 100%;
+    margin: 6px 0;
+}
+
+.lvgl-widgets-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.lvgl-widget {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 6px 8px;
+}
+
+.lvgl-w-label {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.lvgl-w-val {
+    font-size: 11px;
+    font-weight: 700;
+    color: #c8d0ff;
+    margin-top: 2px;
+}
+
+.lvgl-bar {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 4px 0 2px;
+}
+
+.lvgl-bar span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #22d3ee, #7c5cfc);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 6px rgba(124, 92, 252, 0.5);
+}
+
+.lvgl-toggles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+
+.lvgl-toggle {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lvgl-toggle:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(124, 92, 252, 0.3);
+}
+
+.lvgl-tg-label {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.lvgl-tg-knob {
+    width: 30px;
+    height: 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    transition: background 0.25s ease;
+}
+
+.lvgl-tg-knob::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.lvgl-toggle[data-on="true"] .lvgl-tg-knob {
+    background: linear-gradient(90deg, #7c5cfc, #22d3ee);
+}
+
+.lvgl-toggle[data-on="true"] .lvgl-tg-knob::after {
+    transform: translateX(14px);
+}
+
+.lvgl-led-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.lvgl-led {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.lvgl-led[data-on="true"] {
+    background: radial-gradient(circle at 35% 35%, #4ade80, #16a34a);
+    box-shadow:
+        0 0 12px rgba(74, 222, 128, 0.6),
+        inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    border-color: rgba(74, 222, 128, 0.4);
+}
+
+.lvgl-ctrl-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.lvgl-list-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: #e8ecff;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    transition: all 0.2s ease;
+}
+
+.lvgl-list-item:hover {
+    background: rgba(124, 92, 252, 0.15);
+    border-color: rgba(124, 92, 252, 0.4);
+}
+
+.lvgl-li-icon {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.lvgl-list-item[data-on="true"] .lvgl-li-icon {
+    color: #4ade80;
+    text-shadow: 0 0 6px rgba(74, 222, 128, 0.6);
+}
+
+.lvgl-li-text {
+    flex: 1;
+    text-align: left;
+}
+
+.lvgl-li-state {
+    font-size: 9px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.lvgl-list-item[data-on="true"] .lvgl-li-state {
+    color: #4ade80;
+}
+
+.lvgl-slider-block {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.lvgl-about-logo {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    margin: 14px 0 4px;
+    background: linear-gradient(135deg, #7c5cfc, #22d3ee);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lvgl-about-text {
+    text-align: center;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 14px;
+    letter-spacing: 0.3px;
+}
+
+.lvgl-about-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 10px;
+}
+
+.lvgl-about-row:last-child {
+    border-bottom: none;
+}
+
+.lvgl-about-row span:first-child {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.lvgl-about-row span:last-child {
+    color: #c8d0ff;
+    font-weight: 600;
+}
+
+.lvgl-tabbar {
+    height: 38px;
+    background: rgba(10, 15, 30, 0.7);
+    border-top: 1px solid rgba(124, 92, 252, 0.2);
+    display: flex;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.lvgl-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 8px;
+    font-family: var(--font-mono);
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.lvgl-tab svg {
+    width: 14px;
+    height: 14px;
+}
+
+.lvgl-tab:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.lvgl-tab.active {
+    color: #a78bfa;
+}
+
+.lvgl-tab.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    border-radius: 0 0 2px 2px;
+    background: linear-gradient(90deg, #7c5cfc, #22d3ee);
+    box-shadow: 0 0 8px rgba(124, 92, 252, 0.6);
+}
+
+.lvgl-keybank {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.lvgl-key {
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, rgba(124, 92, 252, 0.25), rgba(124, 92, 252, 0.1));
+    border: 1px solid rgba(124, 92, 252, 0.3);
+    color: #c8d0ff;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.1s ease;
+}
+
+.lvgl-key:hover {
+    background: linear-gradient(180deg, rgba(124, 92, 252, 0.4), rgba(124, 92, 252, 0.2));
+    border-color: rgba(124, 92, 252, 0.5);
+}
+
+.lvgl-key:active {
+    transform: scale(0.95);
+    background: linear-gradient(180deg, rgba(124, 92, 252, 0.6), rgba(124, 92, 252, 0.3));
+}
+
+.lvgl-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 540px) {
+    .lvgl-modal {
+        padding: 18px;
+        border-radius: 22px;
+    }
+    .lvgl-screen {
+        width: 240px;
+        height: 280px;
+    }
+    .lvgl-gauge {
+        width: 140px;
+        height: 140px;
+    }
+}

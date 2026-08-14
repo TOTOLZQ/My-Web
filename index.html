@@ -117,6 +117,10 @@
             <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">View Projects</a>
                 <a href="#contact" class="btn-ghost" data-i18n="hero.cta2">Get in Touch</a>
+                <button class="btn-ghost lvgl-trigger" id="lvglTrigger" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg>
+                    LVGL Preview
+                </button>
             </div>
             <div class="hero-tech">
                 <span>MicroPython</span>
@@ -451,6 +455,155 @@
     <canvas class="confetti-canvas" id="confettiCanvas"></canvas>
     <div class="particles-layer" id="particlesLayer"></div>
     <div class="mouse-trail" id="mouseTrail"></div>
+
+    <div class="lvgl-overlay" id="lvglOverlay" aria-hidden="true">
+        <div class="lvgl-backdrop"></div>
+        <div class="lvgl-modal glass" role="dialog" aria-label="LVGL Preview">
+            <button class="lvgl-close" id="lvglClose" aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="lvgl-header">
+                <div class="lvgl-title">LVGL Simulator</div>
+                <div class="lvgl-subtitle">M5Stack Cardputer · 240x240</div>
+            </div>
+            <div class="lvgl-device">
+                <div class="lvgl-bezel">
+                    <div class="lvgl-screen" id="lvglScreen">
+                        <div class="lvgl-statusbar">
+                            <span class="lvgl-sb-time" id="lvglTime">00:00</span>
+                            <span class="lvgl-sb-title" id="lvglView">Home</span>
+                            <span class="lvgl-sb-icons">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.5a14 14 0 0 1 14 0M8.5 15.5a9 9 0 0 1 7 0M12 18.5h.01"/></svg>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M22 11v2"/><rect x="4" y="9" width="12" height="6" rx="1" fill="currentColor"/></svg>
+                            </span>
+                        </div>
+                        <div class="lvgl-content" id="lvglContent">
+                            <div class="lvgl-view lvgl-view-active" data-view="home">
+                                <div class="lvgl-gauge-wrap">
+                                    <svg class="lvgl-gauge" viewBox="0 0 200 200">
+                                        <path class="gauge-track" d="M40 150 A70 70 0 1 1 160 150" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="8" stroke-linecap="round"/>
+                                        <path class="gauge-fill" id="gaugeFill" d="M40 150 A70 70 0 1 1 160 150" fill="none" stroke="url(#gaugeGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="330" stroke-dashoffset="165"/>
+                                        <defs>
+                                            <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                                <stop offset="0%" stop-color="#22d3ee"/>
+                                                <stop offset="100%" stop-color="#7c5cfc"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <line class="gauge-needle" id="gaugeNeedle" x1="100" y1="150" x2="100" y2="90" stroke="#fff" stroke-width="2.5" stroke-linecap="round" transform-origin="100 150"/>
+                                        <circle cx="100" cy="150" r="5" fill="#fff"/>
+                                        <text class="gauge-value" id="gaugeValue" x="100" y="135" text-anchor="middle" fill="#fff" font-size="20" font-weight="700" font-family="JetBrains Mono, monospace">50</text>
+                                        <text class="gauge-unit" x="100" y="170" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="JetBrains Mono, monospace">RPM x10</text>
+                                    </svg>
+                                    <div class="lvgl-gauge-ctrl">
+                                        <button class="lvgl-mini-btn" data-act="gauge-minus" aria-label="Decrease">−</button>
+                                        <input type="range" class="lvgl-range" id="gaugeRange" min="0" max="100" value="50">
+                                        <button class="lvgl-mini-btn" data-act="gauge-plus" aria-label="Increase">+</button>
+                                    </div>
+                                </div>
+                                <div class="lvgl-widgets-row">
+                                    <div class="lvgl-widget">
+                                        <div class="lvgl-w-label">CPU</div>
+                                        <div class="lvgl-bar"><span id="barCpu" style="width:42%"></span></div>
+                                        <div class="lvgl-w-val" id="valCpu">42%</div>
+                                    </div>
+                                    <div class="lvgl-widget">
+                                        <div class="lvgl-w-label">MEM</div>
+                                        <div class="lvgl-bar"><span id="barMem" style="width:68%"></span></div>
+                                        <div class="lvgl-w-val" id="valMem">68%</div>
+                                    </div>
+                                </div>
+                                <div class="lvgl-toggles">
+                                    <div class="lvgl-toggle" data-on="true">
+                                        <span class="lvgl-tg-label">WiFi</span>
+                                        <span class="lvgl-tg-knob"></span>
+                                    </div>
+                                    <div class="lvgl-toggle" data-on="false">
+                                        <span class="lvgl-tg-label">BT</span>
+                                        <span class="lvgl-tg-knob"></span>
+                                    </div>
+                                    <div class="lvgl-toggle" data-on="true">
+                                        <span class="lvgl-tg-label">Sync</span>
+                                        <span class="lvgl-tg-knob"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lvgl-view" data-view="ctrl">
+                                <div class="lvgl-led-grid">
+                                    <div class="lvgl-led" data-on="true"></div>
+                                    <div class="lvgl-led" data-on="false"></div>
+                                    <div class="lvgl-led" data-on="true"></div>
+                                    <div class="lvgl-led" data-on="false"></div>
+                                    <div class="lvgl-led" data-on="true"></div>
+                                    <div class="lvgl-led" data-on="true"></div>
+                                    <div class="lvgl-led" data-on="false"></div>
+                                    <div class="lvgl-led" data-on="true"></div>
+                                </div>
+                                <div class="lvgl-ctrl-list">
+                                    <button class="lvgl-list-item" data-on="false">
+                                        <span class="lvgl-li-icon">●</span>
+                                        <span class="lvgl-li-text">Servo A</span>
+                                        <span class="lvgl-li-state">OFF</span>
+                                    </button>
+                                    <button class="lvgl-list-item" data-on="true">
+                                        <span class="lvgl-li-icon">●</span>
+                                        <span class="lvgl-li-text">Servo B</span>
+                                        <span class="lvgl-li-state">ON</span>
+                                    </button>
+                                    <button class="lvgl-list-item" data-on="false">
+                                        <span class="lvgl-li-icon">●</span>
+                                        <span class="lvgl-li-text">Motor</span>
+                                        <span class="lvgl-li-state">OFF</span>
+                                    </button>
+                                    <button class="lvgl-list-item" data-on="true">
+                                        <span class="lvgl-li-icon">●</span>
+                                        <span class="lvgl-li-text">Buzzer</span>
+                                        <span class="lvgl-li-state">ON</span>
+                                    </button>
+                                </div>
+                                <div class="lvgl-slider-block">
+                                    <div class="lvgl-w-label">Brightness</div>
+                                    <input type="range" class="lvgl-range lvgl-range-full" id="brightnessRange" min="10" max="100" value="80">
+                                    <div class="lvgl-w-val" id="brightnessVal">80%</div>
+                                </div>
+                            </div>
+                            <div class="lvgl-view" data-view="about">
+                                <div class="lvgl-about-logo">LVGL</div>
+                                <div class="lvgl-about-text">Light and Versatile Graphics Library</div>
+                                <div class="lvgl-about-row"><span>Version</span><span>v9.2.0</span></div>
+                                <div class="lvgl-about-row"><span>Driver</span><span>SPI ILI9341</span></div>
+                                <div class="lvgl-about-row"><span>Resolution</span><span>240x240</span></div>
+                                <div class="lvgl-about-row"><span>Color depth</span><span>16-bit</span></div>
+                                <div class="lvgl-about-row"><span>Kernel</span><span>MicroPython</span></div>
+                                <div class="lvgl-about-row"><span>License</span><span>MIT</span></div>
+                            </div>
+                        </div>
+                        <nav class="lvgl-tabbar">
+                            <button class="lvgl-tab active" data-tab="home">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+                                <span>Home</span>
+                            </button>
+                            <button class="lvgl-tab" data-tab="ctrl">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 0 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 0 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 0 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 0 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+                                <span>Control</span>
+                            </button>
+                            <button class="lvgl-tab" data-tab="about">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                                <span>About</span>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+                <div class="lvgl-keybank">
+                    <button class="lvgl-key" data-key="up">↑</button>
+                    <button class="lvgl-key" data-key="left">←</button>
+                    <button class="lvgl-key" data-key="ok">OK</button>
+                    <button class="lvgl-key" data-key="right">→</button>
+                    <button class="lvgl-key" data-key="down">↓</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="egg-tracker" id="eggTracker">
         <span class="egg-label" data-i18n="egg.collected">Eggs</span>
         <span class="egg-count" id="eggCount">0</span>

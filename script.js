@@ -497,6 +497,121 @@ document.querySelectorAll('#themeToggle, #themeToggleWelcome').forEach(btn => {
     btn.addEventListener('click', toggleTheme);
 });
 
+const lvglOverlay = document.getElementById('lvglOverlay');
+const lvglTrigger = document.getElementById('lvglTrigger');
+const lvglClose = document.getElementById('lvglClose');
+const lvglTime = document.getElementById('lvglTime');
+const lvglView = document.getElementById('lvglView');
+const gaugeRange = document.getElementById('gaugeRange');
+const gaugeFill = document.getElementById('gaugeFill');
+const gaugeNeedle = document.getElementById('gaugeNeedle');
+const gaugeValue = document.getElementById('gaugeValue');
+const brightnessRange = document.getElementById('brightnessRange');
+const brightnessVal = document.getElementById('brightnessVal');
+const lvglScreen = document.getElementById('lvglScreen');
+const GAUGE_CIRC = 330;
+
+function setGauge(v) {
+    const val = Math.max(0, Math.min(100, v));
+    gaugeValue.textContent = val;
+    gaugeFill.style.strokeDashoffset = GAUGE_CIRC - (GAUGE_CIRC * val / 100) * 0.75;
+    const angle = -135 + (val / 100) * 270;
+    gaugeNeedle.style.transform = `rotate(${angle}deg)`;
+    gaugeRange.value = val;
+}
+
+gaugeRange.addEventListener('input', () => setGauge(parseInt(gaugeRange.value)));
+document.querySelectorAll('[data-act="gauge-minus"]').forEach(b => b.addEventListener('click', () => setGauge(parseInt(gaugeRange.value) - 5)));
+document.querySelectorAll('[data-act="gauge-plus"]').forEach(b => b.addEventListener('click', () => setGauge(parseInt(gaugeRange.value) + 5)));
+
+brightnessRange.addEventListener('input', () => {
+    brightnessVal.textContent = brightnessRange.value + '%';
+    lvglScreen.style.filter = `brightness(${0.4 + brightnessRange.value / 100 * 0.6})`;
+});
+
+document.querySelectorAll('.lvgl-toggle').forEach(t => {
+    t.addEventListener('click', () => {
+        t.dataset.on = t.dataset.on === 'true' ? 'false' : 'true';
+    });
+});
+
+document.querySelectorAll('.lvgl-led').forEach(led => {
+    led.addEventListener('click', () => {
+        led.dataset.on = led.dataset.on === 'true' ? 'false' : 'true';
+    });
+});
+
+document.querySelectorAll('.lvgl-list-item').forEach(item => {
+    item.addEventListener('click', () => {
+        const newState = item.dataset.on === 'true' ? 'false' : 'true';
+        item.dataset.on = newState;
+        item.querySelector('.lvgl-li-state').textContent = newState === 'true' ? 'ON' : 'OFF';
+    });
+});
+
+const tabNames = { home: 'Home', ctrl: 'Control', about: 'About' };
+document.querySelectorAll('.lvgl-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = tab.dataset.tab;
+        document.querySelectorAll('.lvgl-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === target));
+        document.querySelectorAll('.lvgl-view').forEach(v => v.classList.toggle('lvgl-view-active', v.dataset.view === target));
+        lvglView.textContent = tabNames[target] || target;
+    });
+});
+
+let lvglClockTimer = null;
+function updateLvglClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    lvglTime.textContent = `${h}:${m}`;
+}
+
+function openLvgl() {
+    lvglOverlay.classList.add('open');
+    lvglOverlay.setAttribute('aria-hidden', 'false');
+    updateLvglClock();
+    lvglClockTimer = setInterval(updateLvglClock, 30000);
+    setGauge(50);
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLvgl() {
+    lvglOverlay.classList.remove('open');
+    lvglOverlay.setAttribute('aria-hidden', 'true');
+    if (lvglClockTimer) {
+        clearInterval(lvglClockTimer);
+        lvglClockTimer = null;
+    }
+    document.body.style.overflow = '';
+}
+
+if (lvglTrigger) lvglTrigger.addEventListener('click', openLvgl);
+lvglClose.addEventListener('click', closeLvgl);
+lvglOverlay.querySelector('.lvgl-backdrop').addEventListener('click', closeLvgl);
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lvglOverlay.classList.contains('open')) closeLvgl();
+});
+
+let cpuVal = 42, memVal = 68, cpuDir = 1, memDir = -1;
+setInterval(() => {
+    cpuVal += cpuDir * (3 + Math.random() * 5);
+    if (cpuVal > 92) cpuDir = -1;
+    if (cpuVal < 18) cpuDir = 1;
+    memVal += memDir * (2 + Math.random() * 3);
+    if (memVal > 88) memDir = -1;
+    if (memVal < 45) memDir = 1;
+    const cpuInt = Math.round(cpuVal), memInt = Math.round(memVal);
+    const barCpu = document.getElementById('barCpu');
+    const valCpu = document.getElementById('valCpu');
+    const barMem = document.getElementById('barMem');
+    const valMem = document.getElementById('valMem');
+    if (barCpu) barCpu.style.width = cpuInt + '%';
+    if (valCpu) valCpu.textContent = cpuInt + '%';
+    if (barMem) barMem.style.width = memInt + '%';
+    if (valMem) valMem.textContent = memInt + '%';
+}, 1500);
+
 let logoClicks = 0;
 let logoTimer = null;
 const navLogo = document.querySelector('.nav-logo');
