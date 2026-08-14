@@ -481,22 +481,17 @@
                             <div class="lvgl-view lvgl-view-active" data-view="home">
                                 <div class="lvgl-gauge-wrap">
                                     <svg class="lvgl-gauge" viewBox="0 0 200 200">
-                                        <path class="gauge-track" d="M40 150 A70 70 0 1 1 160 150" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="8" stroke-linecap="round"/>
-                                        <path class="gauge-fill" id="gaugeFill" d="M40 150 A70 70 0 1 1 160 150" fill="none" stroke="url(#gaugeGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="330" stroke-dashoffset="165"/>
-                                        <defs>
-                                            <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                                <stop offset="0%" stop-color="#22d3ee"/>
-                                                <stop offset="100%" stop-color="#7c5cfc"/>
-                                            </linearGradient>
-                                        </defs>
-                                        <line class="gauge-needle" id="gaugeNeedle" x1="100" y1="150" x2="100" y2="90" stroke="#fff" stroke-width="2.5" stroke-linecap="round" transform-origin="100 150"/>
-                                        <circle cx="100" cy="150" r="5" fill="#fff"/>
-                                        <text class="gauge-value" id="gaugeValue" x="100" y="135" text-anchor="middle" fill="#fff" font-size="20" font-weight="700" font-family="JetBrains Mono, monospace">50</text>
-                                        <text class="gauge-unit" x="100" y="170" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="JetBrains Mono, monospace">RPM x10</text>
+                                        <path class="gauge-track" d="M 43.4 156.6 A 80 80 0 1 1 156.6 156.6" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+                                        <g class="gauge-ticks" id="gaugeTicks"></g>
+                                        <g class="gauge-labels" id="gaugeLabels"></g>
+                                        <line class="gauge-needle" id="gaugeNeedle" x1="100" y1="100" x2="100" y2="34" stroke="#e8ecff" stroke-width="2" stroke-linecap="round" transform="rotate(-135 100 100)"/>
+                                        <circle class="gauge-pivot" cx="100" cy="100" r="5" fill="#0c1428" stroke="#e8ecff" stroke-width="1.5"/>
+                                        <text class="gauge-value" id="gaugeValue" x="100" y="126" text-anchor="middle" fill="#e8ecff" font-size="15" font-weight="700" font-family="JetBrains Mono, monospace">0</text>
+                                        <text class="gauge-unit" x="100" y="138" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="6" font-family="JetBrains Mono, monospace" letter-spacing="1">RPM</text>
                                     </svg>
                                     <div class="lvgl-gauge-ctrl">
                                         <button class="lvgl-mini-btn" data-act="gauge-minus" aria-label="Decrease">−</button>
-                                        <input type="range" class="lvgl-range" id="gaugeRange" min="0" max="100" value="50">
+                                        <input type="range" class="lvgl-range" id="gaugeRange" min="0" max="8000" step="500" value="4000">
                                         <button class="lvgl-mini-btn" data-act="gauge-plus" aria-label="Increase">+</button>
                                     </div>
                                 </div>

@@ -503,26 +503,88 @@ const lvglClose = document.getElementById('lvglClose');
 const lvglTime = document.getElementById('lvglTime');
 const lvglView = document.getElementById('lvglView');
 const gaugeRange = document.getElementById('gaugeRange');
-const gaugeFill = document.getElementById('gaugeFill');
 const gaugeNeedle = document.getElementById('gaugeNeedle');
 const gaugeValue = document.getElementById('gaugeValue');
 const brightnessRange = document.getElementById('brightnessRange');
 const brightnessVal = document.getElementById('brightnessVal');
 const lvglScreen = document.getElementById('lvglScreen');
-const GAUGE_CIRC = 330;
+const RPM_MAX = 8000;
+const REDLINE = 6000;
 
-function setGauge(v) {
-    const val = Math.max(0, Math.min(100, v));
-    gaugeValue.textContent = val;
-    gaugeFill.style.strokeDashoffset = GAUGE_CIRC - (GAUGE_CIRC * val / 100) * 0.75;
-    const angle = -135 + (val / 100) * 270;
-    gaugeNeedle.style.transform = `rotate(${angle}deg)`;
-    gaugeRange.value = val;
+function meterAngle(v) {
+    return (-135 + (Math.max(0, Math.min(RPM_MAX, v)) / RPM_MAX) * 270) * Math.PI / 180;
+}
+function meterPoint(v, r) {
+    const a = meterAngle(v);
+    return [100 + r * Math.sin(a), 100 - r * Math.cos(a)];
+}
+
+(function buildMeter() {
+    const NS = 'http://www.w3.org/2000/svg';
+    const ticks = document.getElementById('gaugeTicks');
+    const labels = document.getElementById('gaugeLabels');
+    if (!ticks || ticks.children.length) return;
+    for (let v = 0; v <= RPM_MAX; v += 500) {
+        const isMajor = v % 1000 === 0;
+        const isRed = v >= REDLINE;
+        const rIn = isMajor ? 68 : 74;
+        const rOut = 80;
+        const [x1, y1] = meterPoint(v, rIn);
+        const [x2, y2] = meterPoint(v, rOut);
+        const line = document.createElementNS(NS, 'line');
+        line.setAttribute('x1', x1.toFixed(1));
+        line.setAttribute('y1', y1.toFixed(1));
+        line.setAttribute('x2', x2.toFixed(1));
+        line.setAttribute('y2', y2.toFixed(1));
+        line.setAttribute('stroke', isRed ? '#ff5b5b' : (isMajor ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.25)'));
+        line.setAttribute('stroke-width', isMajor ? '1.6' : '1');
+        line.setAttribute('stroke-linecap', 'round');
+        ticks.appendChild(line);
+    }
+    for (let v = 0; v <= RPM_MAX; v += 1000) {
+        const [x, y] = meterPoint(v, 58);
+        const t = document.createElementNS(NS, 'text');
+        t.setAttribute('x', x.toFixed(1));
+        t.setAttribute('y', y.toFixed(1));
+        t.setAttribute('text-anchor', 'middle');
+        t.setAttribute('dominant-baseline', 'middle');
+        t.setAttribute('fill', v >= REDLINE ? '#ff5b5b' : 'rgba(255,255,255,0.5)');
+        t.setAttribute('font-size', '6.5');
+        t.setAttribute('font-family', 'JetBrains Mono, monospace');
+        t.textContent = v / 1000;
+        labels.appendChild(t);
+    }
+})();
+
+let needleAngle = -135;
+let needleRaf = null;
+function tweenNeedle(targetAngle) {
+    cancelAnimationFrame(needleRaf);
+    const start = needleAngle;
+    const delta = targetAngle - start;
+    const t0 = performance.now();
+    const dur = 380;
+    const step = (now) => {
+        const k = Math.min(1, (now - t0) / dur);
+        const e = 1 - Math.pow(1 - k, 3);
+        needleAngle = start + delta * e;
+        gaugeNeedle.setAttribute('transform', `rotate(${needleAngle.toFixed(2)} 100 100)`);
+        if (k < 1) needleRaf = requestAnimationFrame(step);
+    };
+    needleRaf = requestAnimationFrame(step);
+}
+
+function setGauge(rpm) {
+    const v = Math.max(0, Math.min(RPM_MAX, Math.round(rpm / 500) * 500));
+    gaugeValue.textContent = v;
+    gaugeValue.setAttribute('fill', v >= REDLINE ? '#ff5b5b' : '#e8ecff');
+    tweenNeedle(-135 + (v / RPM_MAX) * 270);
+    if (String(gaugeRange.value) !== String(v)) gaugeRange.value = v;
 }
 
 gaugeRange.addEventListener('input', () => setGauge(parseInt(gaugeRange.value)));
-document.querySelectorAll('[data-act="gauge-minus"]').forEach(b => b.addEventListener('click', () => setGauge(parseInt(gaugeRange.value) - 5)));
-document.querySelectorAll('[data-act="gauge-plus"]').forEach(b => b.addEventListener('click', () => setGauge(parseInt(gaugeRange.value) + 5)));
+document.querySelectorAll('[data-act="gauge-minus"]').forEach(b => b.addEventListener('click', () => setGauge(parseInt(gaugeRange.value) - 500)));
+document.querySelectorAll('[data-act="gauge-plus"]').forEach(b => b.addEventListener('click', () => setGauge(parseInt(gaugeRange.value) + 500)));
 
 brightnessRange.addEventListener('input', () => {
     brightnessVal.textContent = brightnessRange.value + '%';
@@ -572,7 +634,7 @@ function openLvgl() {
     lvglOverlay.setAttribute('aria-hidden', 'false');
     updateLvglClock();
     lvglClockTimer = setInterval(updateLvglClock, 30000);
-    setGauge(50);
+    setGauge(4000);
     document.body.style.overflow = 'hidden';
 }
 
