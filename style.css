@@ -1,4 +1,36 @@
 :root {
+    --bg: #f5f5fa;
+    --bg-secondary: rgba(0, 0, 0, 0.03);
+    --bg-card: rgba(255, 255, 255, 0.7);
+    --bg-card-hover: rgba(255, 255, 255, 0.85);
+    --text: #1a1a2e;
+    --text-muted: rgba(26, 26, 46, 0.72);
+    --text-dim: rgba(26, 26, 46, 0.45);
+    --accent: #7c5cfc;
+    --accent-light: #6c4ce6;
+    --accent-glow: rgba(124, 92, 252, 0.12);
+    --accent-glow-strong: rgba(124, 92, 252, 0.25);
+    --cyan: #22d3ee;
+    --green: #4ade80;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(124, 92, 252, 0.4);
+    --radius: 20px;
+    --radius-sm: 12px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --font: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --glass-bg: rgba(255, 255, 255, 0.55);
+    --glass-bg-hover: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.8);
+    --glass-blur: blur(20px) saturate(1.5);
+    --glass-shadow:
+        0 8px 32px rgba(124, 92, 252, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.04);
+}
+
+:root.dark {
     --bg: #0a0a1f;
     --bg-secondary: rgba(255, 255, 255, 0.04);
     --bg-card: rgba(255, 255, 255, 0.06);
@@ -6,19 +38,11 @@
     --text: #f0f0fa;
     --text-muted: rgba(255, 255, 255, 0.72);
     --text-dim: rgba(255, 255, 255, 0.42);
-    --accent: #7c5cfc;
     --accent-light: #a78bfa;
     --accent-glow: rgba(124, 92, 252, 0.18);
     --accent-glow-strong: rgba(124, 92, 252, 0.35);
-    --cyan: #22d3ee;
-    --green: #4ade80;
     --border: rgba(255, 255, 255, 0.12);
     --border-hover: rgba(124, 92, 252, 0.5);
-    --radius: 20px;
-    --radius-sm: 12px;
-    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --font: 'Inter', 'Noto Sans SC', 'Noto Sans JP', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
     --glass-bg: rgba(255, 255, 255, 0.06);
     --glass-bg-hover: rgba(255, 255, 255, 0.1);
     --glass-border: rgba(255, 255, 255, 0.15);
@@ -486,30 +510,6 @@ html {
     50% { box-shadow: 0 10px 44px rgba(124, 92, 252, 0.4), 0 0 0 8px rgba(124, 92, 252, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7); }
 }
 
-.welcome-tag {
-    position: absolute;
-    top: 18px;
-    right: 18px;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.7);
-    padding: 6px 12px;
-    border-radius: 100px;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
-    cursor: grab;
-    user-select: none;
-    touch-action: none;
-    z-index: 5;
-}
-
-.welcome-tag:active {
-    cursor: grabbing;
-}
-
 .mouse-trail {
     position: fixed;
     inset: 0;
@@ -646,12 +646,45 @@ body {
     line-height: 1.7;
     overflow-x: hidden;
     background:
+        radial-gradient(ellipse 50% 40% at 20% 10%, rgba(124, 92, 252, 0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 85% 85%, rgba(34, 211, 238, 0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 30% at 75% 25%, rgba(167, 139, 250, 0.12) 0%, transparent 50%),
+        linear-gradient(135deg, #f5f5fa 0%, #ece8fa 50%, #e0f7fb 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+:root.dark body {
+    background:
         radial-gradient(ellipse 50% 40% at 20% 10%, rgba(124, 92, 252, 0.22) 0%, transparent 55%),
         radial-gradient(ellipse 60% 50% at 85% 85%, rgba(34, 211, 238, 0.16) 0%, transparent 55%),
         radial-gradient(ellipse 40% 30% at 75% 25%, rgba(167, 139, 250, 0.14) 0%, transparent 50%),
         linear-gradient(135deg, #0a0a1f 0%, #0d0d28 50%, #050a18 100%);
-    background-attachment: fixed;
-    min-height: 100vh;
+}
+
+:root.dark .navbar.scrolled {
+    background: rgba(10, 10, 31, 0.55);
+}
+
+:root.dark .timeline-dot {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+:root.dark .card-header {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+:root.dark .welcome-text {
+    color: rgba(255, 255, 255, 0.72);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+:root.dark .loader-text {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+:root.dark .welcome-tag {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .glass {
@@ -713,16 +746,16 @@ body {
     transform: scale(0.95);
 }
 
-.theme-toggle .theme-icon-light {
+.theme-toggle .theme-icon-dark {
     display: none;
 }
 
-:root.light .theme-toggle .theme-icon-dark {
-    display: none;
-}
-
-:root.light .theme-toggle .theme-icon-light {
+:root.dark .theme-toggle .theme-icon-dark {
     display: block;
+}
+
+:root.dark .theme-toggle .theme-icon-light {
+    display: none;
 }
 
 #themeToggleWelcome {
@@ -732,36 +765,6 @@ body {
     z-index: 5;
     width: 38px;
     height: 38px;
-}
-
-.draggable {
-    user-select: none;
-    touch-action: none;
-    -webkit-user-drag: none;
-}
-
-.draggable.is-dragging {
-    cursor: grabbing !important;
-    transition: none !important;
-    z-index: 99999;
-}
-
-.draggable:not(.welcome-tag):not(.egg-tracker):not(.hero-badge):not(.theme-toggle):not(.welcome-enter) {
-    cursor: grab;
-}
-
-.egg-tracker.draggable,
-.hero-badge.draggable,
-.welcome-enter.draggable,
-.welcome-tag.draggable {
-    cursor: grab;
-}
-
-.egg-tracker.is-dragging,
-.hero-badge.is-dragging,
-.welcome-enter.is-dragging,
-.welcome-tag.is-dragging {
-    cursor: grabbing !important;
 }
 
 a {
@@ -2152,62 +2155,4 @@ a {
 
 .surprise-overlay.show {
     opacity: 1;
-}
-
-:root.light {
-    --bg: #f5f5fa;
-    --bg-secondary: rgba(0, 0, 0, 0.03);
-    --bg-card: rgba(255, 255, 255, 0.7);
-    --bg-card-hover: rgba(255, 255, 255, 0.85);
-    --text: #1a1a2e;
-    --text-muted: rgba(26, 26, 46, 0.72);
-    --text-dim: rgba(26, 26, 46, 0.45);
-    --accent: #7c5cfc;
-    --accent-light: #6c4ce6;
-    --accent-glow: rgba(124, 92, 252, 0.12);
-    --accent-glow-strong: rgba(124, 92, 252, 0.25);
-    --border: rgba(0, 0, 0, 0.08);
-    --border-hover: rgba(124, 92, 252, 0.4);
-    --glass-bg: rgba(255, 255, 255, 0.55);
-    --glass-bg-hover: rgba(255, 255, 255, 0.75);
-    --glass-border: rgba(255, 255, 255, 0.8);
-    --glass-blur: blur(20px) saturate(1.5);
-    --glass-shadow:
-        0 8px 32px rgba(124, 92, 252, 0.1),
-        0 2px 8px rgba(0, 0, 0, 0.04),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.04);
-}
-
-:root.light body {
-    background:
-        radial-gradient(ellipse 50% 40% at 20% 10%, rgba(124, 92, 252, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 50% at 85% 85%, rgba(34, 211, 238, 0.14) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 30% at 75% 25%, rgba(167, 139, 250, 0.12) 0%, transparent 50%),
-        linear-gradient(135deg, #f5f5fa 0%, #ece8fa 50%, #e0f7fb 100%);
-}
-
-:root.light .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.6);
-}
-
-:root.light .welcome-text {
-    color: var(--text-muted);
-    text-shadow: none;
-}
-
-:root.light .loader-text {
-    color: var(--text-muted);
-}
-
-:root.light .welcome-tag {
-    color: var(--text-muted);
-}
-
-:root.light .timeline-dot {
-    border-color: #fff;
-}
-
-:root.light .card-header {
-    background: rgba(124, 92, 252, 0.04);
 }

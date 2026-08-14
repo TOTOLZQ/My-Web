@@ -486,71 +486,16 @@ if (heroName) {
 }
 
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') document.documentElement.classList.add('light');
+if (savedTheme === 'dark') document.documentElement.classList.add('dark');
 
 function toggleTheme() {
-    const isLight = document.documentElement.classList.toggle('light');
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
 document.querySelectorAll('#themeToggle, #themeToggleWelcome').forEach(btn => {
     btn.addEventListener('click', toggleTheme);
 });
-
-function makeDraggable(el) {
-    let drag = null;
-    const onDown = (e) => {
-        const ev = e.touches ? e.touches[0] : e;
-        const rect = el.getBoundingClientRect();
-        drag = {
-            dx: ev.clientX - rect.left,
-            dy: ev.clientY - rect.top,
-            startX: rect.left,
-            startY: rect.top,
-            moved: false
-        };
-        el.classList.add('is-dragging');
-        e.preventDefault();
-        e.stopPropagation();
-    };
-    const onMove = (e) => {
-        if (!drag) return;
-        const ev = e.touches ? e.touches[0] : e;
-        const dx = ev.clientX - drag.startX - drag.dx;
-        const dy = ev.clientY - drag.startY - drag.dy;
-        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) drag.moved = true;
-        el.style.position = 'fixed';
-        el.style.left = (ev.clientX - drag.dx) + 'px';
-        el.style.top = (ev.clientY - drag.dy) + 'px';
-        el.style.right = 'auto';
-        el.style.bottom = 'auto';
-        el.style.transform = 'rotate(' + (dx * 0.05) + 'deg)';
-    };
-    const onUp = (e) => {
-        if (!drag) return;
-        el.classList.remove('is-dragging');
-        el.style.transform = '';
-        if (!drag.moved) {
-            el.style.left = drag.startX + 'px';
-            el.style.top = drag.startY + 'px';
-        }
-        drag = null;
-    };
-    el.addEventListener('mousedown', onDown);
-    el.addEventListener('touchstart', onDown, { passive: false });
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('touchmove', onMove, { passive: false });
-    document.addEventListener('mouseup', onUp);
-    document.addEventListener('touchend', onUp);
-    el.addEventListener('click', (e) => {
-        if (drag && drag.moved) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-    }, true);
-}
-
-document.querySelectorAll('[data-drag]').forEach(makeDraggable);
 
 let logoClicks = 0;
 let logoTimer = null;
