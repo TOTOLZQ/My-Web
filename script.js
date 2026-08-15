@@ -27,19 +27,28 @@ const i18n = {
         'auth.goSignin': 'Sign in',
         'auth.altOr': 'Or use admin access',
         'admin.title': 'Admin dashboard',
+        'admin.kicker': 'Control Center',
+        'admin.changePass': 'Change password',
+        'admin.logout': 'Exit dashboard',
         'admin.online': 'Online now',
         'admin.visits': 'Total visits',
         'admin.users': 'Registered',
         'admin.eggs': 'Eggs found',
-        'admin.userCol': 'User',
-        'admin.emailCol': 'Email',
-        'admin.regCol': 'Registered',
-        'admin.lastCol': 'Last seen',
-        'admin.statusCol': 'Status',
-        'admin.actCol': 'Action',
-        'admin.safe': 'Unlock delete actions',
-        'admin.chpass': 'Change password',
-        'admin.logout': 'Exit dashboard',
+        'admin.onlineFoot': 'Active sessions on this site',
+        'admin.visitsFoot': 'All-time page visit count',
+        'admin.usersFoot': 'Accounts created so far',
+        'admin.eggsFoot': 'Users unlocked an easter egg',
+        'admin.usersTitle': 'Registered users',
+        'admin.thUsername': 'User',
+        'admin.thEmail': 'Email',
+        'admin.thCreated': 'Registered',
+        'admin.thSeen': 'Last seen',
+        'admin.thOnline': 'Status',
+        'admin.thPassword': 'Password',
+        'admin.safeDelete': 'Unlock delete actions',
+        'admin.safeHint': 'Toggle on to enable the Delete button per row. Off by default to prevent accidents.',
+        'auth.adminHint': 'Default admin password is in the docs. Change it after first sign in.',
+        'auth.adminGo': 'Enter dashboard',
         'hero.status': 'Available for collaboration',
         'hero.greeting': "Hello, I'm",
         'hero.subtitle': 'Maker · MicroPython Developer',
@@ -106,19 +115,28 @@ const i18n = {
         'auth.goSignin': '去登录',
         'auth.altOr': '或者使用管理员登录',
         'admin.title': '管理员后台',
+        'admin.kicker': '控制面板',
+        'admin.changePass': '修改密码',
+        'admin.logout': '退出后台',
         'admin.online': '在线人数',
         'admin.visits': '总访问量',
         'admin.users': '注册用户',
         'admin.eggs': '彩蛋发现数',
-        'admin.userCol': '用户',
-        'admin.emailCol': '邮箱',
-        'admin.regCol': '注册时间',
-        'admin.lastCol': '最近活跃',
-        'admin.statusCol': '状态',
-        'admin.actCol': '操作',
-        'admin.safe': '开启删除操作',
-        'admin.chpass': '修改密码',
-        'admin.logout': '退出后台',
+        'admin.onlineFoot': '当前活跃会话',
+        'admin.visitsFoot': '累计页面访问次数',
+        'admin.usersFoot': '已创建的账户总数',
+        'admin.eggsFoot': '已解锁彩蛋的用户数',
+        'admin.usersTitle': '注册用户列表',
+        'admin.thUsername': '用户',
+        'admin.thEmail': '邮箱',
+        'admin.thCreated': '注册时间',
+        'admin.thSeen': '最近活跃',
+        'admin.thOnline': '状态',
+        'admin.thPassword': '密码',
+        'admin.safeDelete': '开启删除操作',
+        'admin.safeHint': '开启后每行的删除按钮才可用，默认关闭以防误操作。',
+        'auth.adminHint': '默认管理员密码见文档，首次登录后请立即修改。',
+        'auth.adminGo': '进入后台',
         'hero.status': '欢迎合作',
         'hero.greeting': '你好，我是',
         'hero.subtitle': 'Maker · MicroPython 开发者',
@@ -185,19 +203,28 @@ const i18n = {
         'auth.goSignin': 'ログイン',
         'auth.altOr': '管理者としてログイン',
         'admin.title': '管理ダッシュボード',
+        'admin.kicker': 'コントロールセンター',
+        'admin.changePass': 'パスワード変更',
+        'admin.logout': '管理画面を終了',
         'admin.online': 'オンライン',
         'admin.visits': '合計訪問',
         'admin.users': '登録ユーザー',
         'admin.eggs': '発見エッグ',
-        'admin.userCol': 'ユーザー',
-        'admin.emailCol': 'メール',
-        'admin.regCol': '登録日',
-        'admin.lastCol': '最終アクティブ',
-        'admin.statusCol': 'ステータス',
-        'admin.actCol': '操作',
-        'admin.safe': '削除操作を有効化',
-        'admin.chpass': 'パスワード変更',
-        'admin.logout': '管理画面を終了',
+        'admin.onlineFoot': '現在のアクティブセッション',
+        'admin.visitsFoot': '全期間のページ訪問数',
+        'admin.usersFoot': '作成済みアカウント数',
+        'admin.eggsFoot': 'エッグをアンロックしたユーザー数',
+        'admin.usersTitle': '登録ユーザー一覧',
+        'admin.thUsername': 'ユーザー',
+        'admin.thEmail': 'メール',
+        'admin.thCreated': '登録日',
+        'admin.thSeen': '最終アクティブ',
+        'admin.thOnline': 'ステータス',
+        'admin.thPassword': 'パスワード',
+        'admin.safeDelete': '削除操作を有効化',
+        'admin.safeHint': 'オンにすると各行の削除ボタンが有効になります。誤操作防止のためデフォルトはオフです。',
+        'auth.adminHint': '初期管理者パスワードはドキュメントを参照。初回ログイン後に変更してください。',
+        'auth.adminGo': '管理画面へ',
         'hero.status': 'コラボ募集中',
         'hero.greeting': 'こんにちは、',
         'hero.subtitle': 'Maker · MicroPython開発者',
@@ -835,7 +862,12 @@ const navAuth = {
     resendIn: { en: 'Resend in ', cn: '秒后重发 ', jp: ' 秒後に再送 ' },
     seconds: { en: 's', cn: '秒', jp: '秒' },
     emailNotConf: { en: 'EmailJS not configured yet — using local demo code ', cn: '尚未配置 EmailJS，使用本地演示验证码 ', jp: 'EmailJS未設定、ローカルデモコード ' },
-    passwordHint: { en: 'User password (encrypted)', cn: '用户密码（加密存储）', jp: 'ユーザーパスワード（暗号化保存）' }
+    passwordHint: { en: 'User password (encrypted)', cn: '用户密码（加密存储）', jp: 'ユーザーパスワード（暗号化保存）' },
+    thUsername: { en: 'User', cn: '用户', jp: 'ユーザー' },
+    thEmail: { en: 'Email', cn: '邮箱', jp: 'メール' },
+    thCreated: { en: 'Registered', cn: '注册时间', jp: '登録日' },
+    thSeen: { en: 'Last seen', cn: '最近活跃', jp: '最終アクティブ' },
+    thOnline: { en: 'Status', cn: '状态', jp: 'ステータス' }
 };
 
 const EMAILJS = {
@@ -1670,8 +1702,9 @@ function renderAdminDashboard() {
     animateNumber(adminVisitsEl, visits);
     animateNumber(adminUsersEl, users.length);
     animateNumber(adminEggsEl, eggs);
-    const thead = adminUsersBody ? adminUsersBody.closest('table').querySelector('thead tr') : null;
-    if (thead && thead.children.length === 6) {
+    const tbody = adminUsersBody;
+    const thead = tbody ? tbody.closest('table').querySelector('thead tr') : null;
+    if (thead && thead.children.length < 7) {
         thead.innerHTML =
             '<th data-i18n="admin.thUsername">' + tstr('thUsername') + '</th>' +
             '<th data-i18n="admin.thEmail">' + tstr('thEmail') + '</th>' +
@@ -1688,23 +1721,23 @@ function renderAdminDashboard() {
     }
     const now = Date.now();
     const armed = adminSafeDelete ? adminSafeDelete.checked : false;
-    const rows = users.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).map(u => {
+    const rows = users.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).map((u, i) => {
         const on = isOnlineNow(u.username, hearts);
         const pwDec = decUserPwd(u.passHash || '');
-        return '<tr data-user="' + escapeHtml(u.username) + '">' +
-            '<td><strong>' + escapeHtml(u.username) + '</strong>' + (u.role === 'admin' ? ' <span style="font-family:JetBrains Mono,monospace;font-size:0.7em;padding:2px 6px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;vertical-align:middle;">ADMIN</span>' : '') + '</td>' +
-            '<td>' + escapeHtml(u.email) + '</td>' +
-            '<td style="white-space:nowrap;">' + new Date(u.createdAt || Date.now()).toLocaleDateString() + '</td>' +
-            '<td style="white-space:nowrap;">' + humanTime(u.lastSeen, now) + '</td>' +
+        return '<tr data-user="' + escapeHtml(u.username) + '" class="' + (i % 2 ? 'alt' : '') + '">' +
+            '<td><strong>' + escapeHtml(u.username) + '</strong>' + (u.role === 'admin' ? ' <span class="admin-badge-grad">ADMIN</span>' : '') + '</td>' +
+            '<td>' + escapeHtml(u.email || '') + '</td>' +
+            '<td class="nowrap">' + new Date(u.createdAt || Date.now()).toLocaleDateString() + '</td>' +
+            '<td class="nowrap">' + humanTime(u.lastSeen, now) + '</td>' +
             '<td><span class="admin-online-dot' + (on ? ' online' : '') + '">' + (on ? tstr('online') : tstr('offline')) + '</span></td>' +
             '<td>' +
-              '<div style="display:flex;align-items:center;gap:6px;min-width:140px;justify-content:flex-end;">' +
-                '<code class="pwd-cell" data-pwd="' + escapeHtml(pwDec) + '" style="font-family:JetBrains Mono,monospace;font-size:0.76em;letter-spacing:0.04em;color:var(--text-mute);">\u2022\u2022\u2022\u2022\u2022\u2022</code>' +
+              '<div class="admin-pwd-cell">' +
+                '<code class="pwd-cell" data-pwd="' + escapeHtml(pwDec) + '">\u2022\u2022\u2022\u2022\u2022\u2022</code>' +
                 '<button type="button" class="admin-row-toggle" data-act="togglepwd" data-user="' + escapeHtml(u.username) + '" title="' + tstr('showPwd') + '">' + tstr('showPwd') + '</button>' +
               '</div>' +
             '</td>' +
-            '<td style="text-align:right;">' +
-              '<div style="display:flex;gap:6px;justify-content:flex-end;">' +
+            '<td class="admin-actions-cell">' +
+              '<div class="admin-row-actions">' +
                 '<button type="button" class="admin-row-kick" data-act="kick" data-user="' + escapeHtml(u.username) + '">' + tstr('kickUser') + '</button>' +
                 '<button type="button" class="admin-row-delete' + (armed ? ' armed' : '') + '" data-act="deluser" data-user="' + escapeHtml(u.username) + '">Delete</button>' +
               '</div>' +

@@ -562,41 +562,54 @@
             </div>
             <div class="admin-stats">
                 <div class="admin-stat">
-                    <div class="admin-stat-label" data-i18n="admin.online">admin.online</div>
+                    <div class="admin-stat-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="admin-stat-label" data-i18n="admin.online">Online now</div>
                     <div class="admin-stat-value" id="adminOnline" data-value="1">1</div>
-                    <div class="admin-stat-foot" data-i18n="admin.onlineFoot">admin.onlineFoot</div>
+                    <div class="admin-stat-foot" data-i18n="admin.onlineFoot">Active sessions on this site</div>
                 </div>
                 <div class="admin-stat admin-stat-primary">
-                    <div class="admin-stat-label" data-i18n="admin.visits">admin.visits</div>
+                    <div class="admin-stat-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </div>
+                    <div class="admin-stat-label" data-i18n="admin.visits">Total visits</div>
                     <div class="admin-stat-value" id="adminVisits" data-value="1">1</div>
-                    <div class="admin-stat-foot" data-i18n="admin.visitsFoot">admin.visitsFoot</div>
+                    <div class="admin-stat-foot" data-i18n="admin.visitsFoot">All-time page visit count</div>
                 </div>
                 <div class="admin-stat admin-stat-cyan">
-                    <div class="admin-stat-label" data-i18n="admin.users">admin.users</div>
+                    <div class="admin-stat-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                    </div>
+                    <div class="admin-stat-label" data-i18n="admin.users">Registered</div>
                     <div class="admin-stat-value" id="adminUsers" data-value="0">0</div>
-                    <div class="admin-stat-foot" data-i18n="admin.usersFoot">admin.usersFoot</div>
+                    <div class="admin-stat-foot" data-i18n="admin.usersFoot">Accounts created so far</div>
                 </div>
                 <div class="admin-stat admin-stat-green">
-                    <div class="admin-stat-label" data-i18n="admin.eggs">admin.eggs</div>
+                    <div class="admin-stat-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="admin-stat-label" data-i18n="admin.eggs">Eggs found</div>
                     <div class="admin-stat-value" id="adminEggs" data-value="0">0</div>
-                    <div class="admin-stat-foot" data-i18n="admin.eggsFoot">admin.eggsFoot</div>
+                    <div class="admin-stat-foot" data-i18n="admin.eggsFoot">Users unlocked an easter egg</div>
                 </div>
             </div>
             <div class="admin-sub">
-                <div class="admin-sub-title" data-i18n="admin.usersTitle">admin.usersTitle</div>
+                <div class="admin-sub-title" data-i18n="admin.usersTitle">Registered users</div>
                 <div class="admin-table-wrap">
                     <table class="admin-table">
                         <thead>
                             <tr>
-                                <th data-i18n="admin.thUsername">admin.thUsername</th>
-                                <th data-i18n="admin.thEmail">admin.thEmail</th>
-                                <th data-i18n="admin.thCreated">admin.thCreated</th>
-                                <th data-i18n="admin.thSeen">admin.thSeen</th>
-                                <th data-i18n="admin.thOnline">admin.thOnline</th>
+                                <th data-i18n="admin.thUsername">User</th>
+                                <th data-i18n="admin.thEmail">Email</th>
+                                <th data-i18n="admin.thCreated">Registered</th>
+                                <th data-i18n="admin.thSeen">Last seen</th>
+                                <th data-i18n="admin.thOnline">Status</th>
+                                <th data-i18n="admin.thPassword">Password</th>
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody id="adminUsersBody"><tr><td colspan="6" class="admin-empty">No registered users yet.</td></tr></tbody>
+                        <tbody id="adminUsersBody"><tr><td colspan="7" class="admin-empty">No registered users yet.</td></tr></tbody>
                     </table>
                 </div>
             </div>
