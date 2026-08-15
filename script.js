@@ -1489,6 +1489,25 @@ function getTurnstileToken() {
     return 'skip';
 }
 
+(function initTurnstile() {
+    if (!TURNSTILE_SITEKEY) {
+        const wrap = document.querySelector('.auth-turnstile-wrap');
+        if (wrap) wrap.remove();
+        return;
+    }
+    const wrap = document.querySelector('.auth-turnstile-wrap');
+    const el = document.querySelector('.cf-turnstile');
+    if (wrap && el) {
+        el.setAttribute('data-sitekey', TURNSTILE_SITEKEY);
+        wrap.hidden = false;
+        const s = document.createElement('script');
+        s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+        s.async = true;
+        s.defer = true;
+        document.head.appendChild(s);
+    }
+})();
+
 function findUser(username) {
     const users = dbCache.users || [];
     return users.find(u => u.username.toLowerCase() === (username || '').toLowerCase());
@@ -1655,6 +1674,7 @@ if (navAuthBtn) {
 document.querySelectorAll('[data-auth-form="register"]').forEach(form => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        try {
         const data = Object.fromEntries(new FormData(form).entries());
         const username = (data.username || '').trim();
         const email = (data.email || '').trim();
@@ -1693,12 +1713,16 @@ document.querySelectorAll('[data-auth-form="register"]').forEach(form => {
             f.password && (f.password.value = '');
         }
         showToast(tstr('registerOk'), 'ok');
+        } catch (err) {
+            showToast(err.message || 'Error', 'err');
+        }
     });
 });
 
 document.querySelectorAll('[data-auth-form="signin"]').forEach(form => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        try {
         const data = Object.fromEntries(new FormData(form).entries());
         const username = (data.username || '').trim();
         const password = data.password || '';
@@ -1721,12 +1745,16 @@ document.querySelectorAll('[data-auth-form="signin"]').forEach(form => {
         showToast(tstr('signInOk') + ' · ' + user.username, 'ok');
         closeModal('authModal');
         if (user.role === 'admin') setTimeout(openAdminDashboard, 200);
+        } catch (err) {
+            showToast(err.message || 'Error', 'err');
+        }
     });
 });
 
 document.querySelectorAll('[data-auth-form="admin"]').forEach(form => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+        try {
         const data = Object.fromEntries(new FormData(form).entries());
         const pw = data.adminPass || '';
         setAuthError('admin', '');
@@ -1742,6 +1770,9 @@ document.querySelectorAll('[data-auth-form="admin"]').forEach(form => {
         closeModal('authModal');
         showToast(tstr('adminOk'), 'ok');
         setTimeout(openAdminDashboard, 150);
+        } catch (err) {
+            showToast(err.message || 'Error', 'err');
+        }
     });
 });
 
