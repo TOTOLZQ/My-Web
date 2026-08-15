@@ -2979,6 +2979,8 @@ a {
     width: min(1080px, 100%);
     max-height: calc(100vh - 48px);
     padding: 30px 30px 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
     border: 1px solid var(--glass-border);
     background:
         linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
@@ -2987,6 +2989,18 @@ a {
         0 30px 80px -20px rgba(124, 92, 252, 0.35),
         0 10px 30px -10px rgba(0, 0, 0, 0.3),
         var(--glass-shadow);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(124, 92, 252, 0.45) transparent;
+}
+.modal-card.admin-card::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-card.admin-card::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--accent), var(--cyan));
+    border-radius: 8px;
+}
+.modal-card.admin-card::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 .admin-head {
