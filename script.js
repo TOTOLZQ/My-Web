@@ -15,6 +15,7 @@ const i18n = {
         'auth.admin': 'Admin',
         'auth.username': 'Username',
         'auth.email': 'Email',
+        'auth.phone': 'Phone',
         'auth.password': 'Password',
         'auth.confirm': 'Confirm password',
         'auth.adminPass': 'Admin password',
@@ -27,11 +28,10 @@ const i18n = {
         'auth.goSignin': 'Sign in',
         'auth.altOr': 'Or use admin access',
         'auth.code': 'Code',
-        'auth.sendCode': 'Send code',
-        'auth.signinGo': 'Sign in',
-        'auth.registerGo': 'Create account',
-        'auth.adminGo': 'Enter dashboard',
-        'auth.captchaFail': 'Please complete the human verification.',
+        'auth.captchaRefresh': 'Refresh',
+        'auth.captchaFail': 'Incorrect code.',
+        'auth.phoneInvalid': 'Please enter a valid phone number.',
+        'auth.phoneExists': 'Phone already registered.',
         'vk.title': 'Virtual Keyboard',
         'vk.clear': 'Clear',
         'vk.backspace': 'Delete',
@@ -43,6 +43,7 @@ const i18n = {
         'admin.eggs': 'Eggs found',
         'admin.userCol': 'User',
         'admin.emailCol': 'Email',
+        'admin.phoneCol': 'Phone',
         'admin.regCol': 'Registered',
         'admin.lastCol': 'Last seen',
         'admin.statusCol': 'Status',
@@ -104,6 +105,7 @@ const i18n = {
         'auth.admin': '管理员',
         'auth.username': '用户名',
         'auth.email': '邮箱',
+        'auth.phone': '手机号',
         'auth.password': '密码',
         'auth.confirm': '确认密码',
         'auth.adminPass': '管理员密码',
@@ -116,11 +118,10 @@ const i18n = {
         'auth.goSignin': '去登录',
         'auth.altOr': '或者使用管理员登录',
         'auth.code': '验证码',
-        'auth.sendCode': '发送验证码',
-        'auth.signinGo': '登录',
-        'auth.registerGo': '创建账户',
-        'auth.adminGo': '进入后台',
-        'auth.captchaFail': '请完成人机验证。',
+        'auth.captchaRefresh': '刷新',
+        'auth.captchaFail': '验证码错误。',
+        'auth.phoneInvalid': '请输入有效的手机号。',
+        'auth.phoneExists': '手机号已注册。',
         'vk.title': '虚拟键盘',
         'vk.clear': '清空',
         'vk.backspace': '删除',
@@ -131,7 +132,7 @@ const i18n = {
         'admin.users': '注册用户',
         'admin.eggs': '彩蛋发现数',
         'admin.userCol': '用户',
-        'admin.emailCol': '邮箱',
+        'admin.phoneCol': '手机号',
         'admin.regCol': '注册时间',
         'admin.lastCol': '最近活跃',
         'admin.statusCol': '状态',
@@ -193,6 +194,7 @@ const i18n = {
         'auth.admin': '管理者',
         'auth.username': 'ユーザー名',
         'auth.email': 'メールアドレス',
+        'auth.phone': '電話番号',
         'auth.password': 'パスワード',
         'auth.confirm': 'パスワード確認',
         'auth.adminPass': '管理者パスワード',
@@ -205,11 +207,10 @@ const i18n = {
         'auth.goSignin': 'ログイン',
         'auth.altOr': '管理者としてログイン',
         'auth.code': 'コード',
-        'auth.sendCode': 'コード送信',
-        'auth.signinGo': 'ログイン',
-        'auth.registerGo': 'アカウント作成',
-        'auth.adminGo': '管理画面へ',
-        'auth.captchaFail': 'ロボット確認を完了してください。',
+        'auth.captchaRefresh': '更新',
+        'auth.captchaFail': 'コードが違います。',
+        'auth.phoneInvalid': '有効な電話番号を入力してください。',
+        'auth.phoneExists': '電話番号は登録済みです。',
         'vk.title': '仮想キーボード',
         'vk.clear': 'クリア',
         'vk.backspace': '削除',
@@ -220,7 +221,7 @@ const i18n = {
         'admin.users': '登録ユーザー',
         'admin.eggs': '発見エッグ',
         'admin.userCol': 'ユーザー',
-        'admin.emailCol': 'メール',
+        'admin.phoneCol': '電話番号',
         'admin.regCol': '登録日',
         'admin.lastCol': '最終アクティブ',
         'admin.statusCol': 'ステータス',
@@ -845,7 +846,16 @@ const navAuth = {
     offline: { en: 'Offline', cn: '离线', jp: 'オフライン' },
     emptyUsers: { en: 'No registered users yet.', cn: '暂无注册用户。', jp: 'まだ登録ユーザーはいません。' },
     guest: { en: 'Guest', cn: '访客', jp: 'ゲスト' },
+    thUsername: { en: 'User', cn: '用户', jp: 'ユーザー' },
+    thPhone: { en: 'Phone', cn: '手机号', jp: '電話番号' },
+    thCreated: { en: 'Registered', cn: '注册时间', jp: '登録日' },
+    thSeen: { en: 'Last seen', cn: '最近活跃', jp: '最終アクティブ' },
+    thOnline: { en: 'Status', cn: '状态', jp: 'ステータス' },
     thPassword: { en: 'Password', cn: '密码', jp: 'パスワード' },
+    phoneInvalid: { en: 'Please enter a valid phone number.', cn: '请输入有效的手机号。', jp: '有効な電話番号を入力してください。' },
+    phoneExists: { en: 'Phone already registered.', cn: '手机号已注册。', jp: '電話番号は登録済みです。' },
+    captchaRefresh: { en: 'Refresh', cn: '刷新', jp: '更新' },
+    captchaFail: { en: 'Incorrect captcha. Try again.', cn: '验证码错误，请重试。', jp: 'コードが違います。' },
     showPwd: { en: 'Show', cn: '查看', jp: '表示' },
     hidePwd: { en: 'Hide', cn: '隐藏', jp: '隠す' },
     kickUser: { en: 'Kick', cn: '强制登出', jp: '強制ログアウト' },
@@ -1315,86 +1325,113 @@ function hashPass(s) {
 }
 
 const otpStore = { codes: {} };
-async function sendOtp(mode) {
-    let email = '';
-    if (mode === 'register') {
-        const f = document.querySelector('[data-auth-form="register"]');
-        if (f && f.email) email = (f.email.value || '').trim();
-    } else if (mode === 'signin') {
-        const f = document.querySelector('[data-auth-form="signin"]');
-        if (f && f.username) {
-            const un = (f.username.value || '').trim();
-            const u = findUser(un);
-            if (u) email = u.email || '';
-        }
-    }
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        if (mode === 'register') setAuthError('register', tstr('emailInvalid'));
-        else setAuthError('signin', tstr('emailInvalid'));
-        return;
-    }
-    const key = (mode || 'otp') + ':' + email.toLowerCase();
-    const code = genCode();
-    const res = await emailSendCode(email, code, mode);
-    const expAt = Date.now() + 5 * 60 * 1000;
-    otpStore.codes[key] = { code, expAt, try: 0 };
-    const btn = document.querySelector('[data-otp="' + (mode || '') + '"]');
-    if (btn) {
-        const orig = btn.textContent || btn.innerText || '';
-        btn.disabled = true;
-        btn.style.opacity = '0.5';
-        let left = 60;
-        btn.textContent = left + 's';
-        const t = setInterval(() => {
-            left--;
-            if (left <= 0) {
-                clearInterval(t);
-                btn.disabled = false;
-                btn.style.opacity = '';
-                btn.textContent = orig || tstr('sendCode');
-            } else {
-                btn.textContent = left + 's';
-            }
-        }, 1000);
-    }
-    if (res === 'demo') {
-        showToast(tstr('codeSentDemo') + ' ' + code, 'ok');
-        const codeInput = document.querySelector('[data-auth-form="' + (mode || '') + '"] [name=code]');
-        if (codeInput) {
-            codeInput.setAttribute('placeholder', tstr('codeSentDemo') + ' ' + code);
-            setTimeout(() => {
-                if (codeInput.getAttribute('placeholder') && codeInput.getAttribute('placeholder').indexOf(code) >= 0) {
-                    codeInput.removeAttribute('placeholder');
-                }
-            }, 15 * 60 * 1000);
-        }
-    } else if (res === true) showToast(tstr('codeSent'), 'ok');
-    else showToast(tstr('codeSendFail'), 'err');
-}
 window._otpStore = otpStore;
-function verifyOtp(email, code, mode) {
-    if (!email || !code) return false;
-    const key = (mode || 'otp') + ':' + email.toLowerCase();
-    const rec = otpStore.codes[key];
-    if (!rec) return false;
-    const now = Date.now();
-    if (now > rec.expAt) { delete otpStore.codes[key]; return false; }
-    rec.try = (rec.try || 0) + 1;
-    if (rec.try > 8) { delete otpStore.codes[key]; return false; }
-    if (String(rec.code) === String(code).trim()) {
-        delete otpStore.codes[key];
-        return true;
+
+const CAPTCHA_W = 170;
+const CAPTCHA_H = 54;
+const captchaState = { answer: '', until: 0, canvasByTarget: {} };
+function gen6Digits() {
+    let s = '';
+    for (let i = 0; i < 6; i++) s += String(Math.floor(Math.random() * 10));
+    return s;
+}
+function drawCaptcha(target) {
+    target = target || 'register';
+    const canvasId = 'captcha-' + target;
+    let c = document.getElementById(canvasId);
+    if (!c) {
+        c = document.createElement('canvas');
+        c.id = canvasId;
+        c.width = CAPTCHA_W;
+        c.height = CAPTCHA_H;
+        c.style.cssText = 'border-radius:12px;display:block;cursor:pointer;';
+        c.setAttribute('role', 'img');
+        c.setAttribute('aria-label', 'Captcha');
     }
-    return false;
+    const code = gen6Digits();
+    captchaState.answer = code;
+    captchaState.until = Date.now() + 10 * 60 * 1000;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, CAPTCHA_W, CAPTCHA_H);
+    const bg = ctx.createLinearGradient(0, 0, CAPTCHA_W, CAPTCHA_H);
+    bg.addColorStop(0, '#f5f3ff');
+    bg.addColorStop(1, '#ecfeff');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, CAPTCHA_W, CAPTCHA_H);
+    const colors = ['#7c5cfc', '#06b6d4', '#f43f5e', '#10b981', '#f59e0b', '#3b82f6'];
+    for (let i = 0; i < 7; i++) {
+        ctx.strokeStyle = colors[i % colors.length] + '66';
+        ctx.lineWidth = 1 + Math.random();
+        ctx.beginPath();
+        ctx.moveTo(Math.random() * CAPTCHA_W, Math.random() * CAPTCHA_H);
+        ctx.bezierCurveTo(Math.random() * CAPTCHA_W, Math.random() * CAPTCHA_H, Math.random() * CAPTCHA_W, Math.random() * CAPTCHA_H, Math.random() * CAPTCHA_W, Math.random() * CAPTCHA_H);
+        ctx.stroke();
+    }
+    for (let i = 0; i < 80; i++) {
+        ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)] + '55';
+        ctx.beginPath();
+        ctx.arc(Math.random() * CAPTCHA_W, Math.random() * CAPTCHA_H, 1 + Math.random() * 2, 0, Math.PI * 2);
+        ctx.fill();
+    }
+    const fonts = [
+        '700 30px "Noto Sans SC", "Inter", sans-serif',
+        '700 30px "JetBrains Mono", monospace',
+        '700 30px "Playfair Display", serif',
+        '700 30px "Bangers", cursive',
+        '700 30px "Permanent Marker", cursive',
+        '700 30px "Press Start 2P", cursive',
+        '700 30px "VT323", monospace'
+    ];
+    for (let i = 0; i < code.length; i++) {
+        const ch = code[i];
+        ctx.save();
+        const x = 14 + i * 24;
+        const y = CAPTCHA_H / 2 + 10 + (Math.random() * 6 - 3);
+        const rot = (Math.random() - 0.5) * 0.5;
+        ctx.translate(x, y);
+        ctx.rotate(rot);
+        ctx.font = fonts[Math.floor(Math.random() * fonts.length)];
+        ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+        ctx.textBaseline = 'alphabetic';
+        ctx.shadowColor = 'rgba(0,0,0,0.18)';
+        ctx.shadowBlur = 4;
+        ctx.fillText(ch, 0, 0);
+        ctx.restore();
+    }
+    captchaState.canvasByTarget[target] = c;
+    return c;
+}
+function refreshCaptcha(target) {
+    return drawCaptcha(target);
+}
+function verifyCaptcha(input) {
+    if (Date.now() > captchaState.until) return false;
+    const s = String(input || '').trim();
+    if (s.length !== 6 || !/^[0-9]{6}$/.test(s)) return false;
+    return s === captchaState.answer;
+}
+function mountCaptcha(target) {
+    const holder = document.querySelector('[data-captcha-holder="' + target + '"]');
+    if (!holder) return;
+    holder.innerHTML = '';
+    const canvas = drawCaptcha(target);
+    canvas.title = 'Refresh';
+    canvas.addEventListener && canvas.addEventListener('click', () => { refreshCaptcha(target); });
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn btn-ghost captcha-refresh';
+    btn.setAttribute('data-i18n', 'auth.captchaRefresh');
+    btn.textContent = tstr('captchaRefresh');
+    btn.addEventListener('click', () => { refreshCaptcha(target); });
+    holder.appendChild(canvas);
+    holder.appendChild(btn);
 }
 
-document.addEventListener('click', (e) => {
-    const btn = e.target.closest && e.target.closest('[data-otp]');
-    if (!btn) return;
-    e.preventDefault();
-    const mode = btn.getAttribute('data-otp');
-    sendOtp(mode);
-});
+(function initCaptchas(){
+    ['signin', 'register', 'admin'].forEach(function(t){
+        try { mountCaptcha(t); } catch(e) {}
+    });
+})();
 
 const TURNSTILE_SITEKEY = '';
 const vkState = { target: null, val: '', shift: false };
@@ -1671,31 +1708,34 @@ if (navAuthBtn) {
     });
 }
 
+function isValidPhone(s) {
+    return /^\+?[0-9]{7,15}$/.test(String(s || '').trim());
+}
+
 document.querySelectorAll('[data-auth-form="register"]').forEach(form => {
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         try {
         const data = Object.fromEntries(new FormData(form).entries());
         const username = (data.username || '').trim();
-        const email = (data.email || '').trim();
+        const phone = (data.phone || '').trim();
         const password = data.password || '';
         const confirm = data.confirm || '';
         const code = (data.code || '').trim();
         setAuthError('register', '');
-        if (!username || !email || !password || !confirm || !code) return setAuthError('register', tstr('required'));
+        if (!username || !phone || !password || !confirm || !code) return setAuthError('register', tstr('required'));
         if (username.length < 2) return setAuthError('register', tstr('userShort'));
         if (password.length < 4) return setAuthError('register', tstr('passShort'));
         if (password !== confirm) return setAuthError('register', tstr('confirmMismatch'));
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setAuthError('register', tstr('emailInvalid'));
-        const tsTok = getTurnstileToken();
-        if (tsTok === '' || tsTok === 'fail') return setAuthError('register', tstr('captchaFail'));
-        if (!verifyOtp(email, code, 'register')) return setAuthError('register', tstr('codeBad'));
+        if (!isValidPhone(phone)) return setAuthError('register', tstr('phoneInvalid'));
+        if (!verifyCaptcha(code)) { refreshCaptcha('register'); return setAuthError('register', tstr('captchaFail')); }
         if (findUser(username)) return setAuthError('register', tstr('userExists'));
         const users0 = dbCache.users || [];
-        if (users0.find(u => u.email.toLowerCase() === email.toLowerCase())) return setAuthError('register', tstr('emailExists'));
+        if (users0.find(u => (u.phone || '').toLowerCase() === phone.toLowerCase())) return setAuthError('register', tstr('phoneExists'));
         const newUser = {
             username,
-            email,
+            phone,
+            email: '',
             passHash: encUserPwd(password),
             role: 'user',
             createdAt: Date.now(),
@@ -1729,8 +1769,7 @@ document.querySelectorAll('[data-auth-form="signin"]').forEach(form => {
         const code = (data.code || '').trim();
         setAuthError('signin', '');
         if (!username || !password || !code) return setAuthError('signin', tstr('required'));
-        const tsTok = getTurnstileToken();
-        if (tsTok === '' || tsTok === 'fail') return setAuthError('signin', tstr('captchaFail'));
+        if (!verifyCaptcha(code)) { refreshCaptcha('signin'); return setAuthError('signin', tstr('captchaFail')); }
         const user = findUser(username);
         let match = false;
         if (user) {
@@ -1739,7 +1778,6 @@ document.querySelectorAll('[data-auth-form="signin"]').forEach(form => {
             else match = user.passHash === password;
         }
         if (!match) return setAuthError('signin', tstr('invalidCreds'));
-        if (!verifyOtp(user.email, code, 'signin')) return setAuthError('signin', tstr('codeBad'));
         writeSession(user.username, user.role);
         renderNavAuth();
         showToast(tstr('signInOk') + ' · ' + user.username, 'ok');
@@ -1757,10 +1795,10 @@ document.querySelectorAll('[data-auth-form="admin"]').forEach(form => {
         try {
         const data = Object.fromEntries(new FormData(form).entries());
         const pw = data.adminPass || '';
+        const code = (data.code || '').trim();
         setAuthError('admin', '');
-        if (!pw) return setAuthError('admin', tstr('required'));
-        const tsTok = getTurnstileToken();
-        if (tsTok === '' || tsTok === 'fail') return setAuthError('admin', tstr('captchaFail'));
+        if (!pw || !code) return setAuthError('admin', tstr('required'));
+        if (!verifyCaptcha(code)) { refreshCaptcha('admin'); return setAuthError('admin', tstr('captchaFail')); }
         let stored = dbCache.adminPass || DEFAULT_ADMIN_PASS;
         if (stored && !stored.startsWith('s2_')) stored = adminHash(stored);
         const match = adminHash(pw) === stored;
@@ -1826,7 +1864,7 @@ function renderAdminDashboard() {
     if (thead && thead.children.length === 6) {
         thead.innerHTML =
             '<th data-i18n="admin.thUsername">' + tstr('thUsername') + '</th>' +
-            '<th data-i18n="admin.thEmail">' + tstr('thEmail') + '</th>' +
+            '<th data-i18n="admin.thPhone">' + tstr('thPhone') + '</th>' +
             '<th data-i18n="admin.thCreated">' + tstr('thCreated') + '</th>' +
             '<th data-i18n="admin.thSeen">' + tstr('thSeen') + '</th>' +
             '<th data-i18n="admin.thOnline">' + tstr('thOnline') + '</th>' +
@@ -1845,7 +1883,7 @@ function renderAdminDashboard() {
         const pwDec = decUserPwd(u.passHash || '');
         return '<tr data-user="' + escapeHtml(u.username) + '">' +
             '<td><strong>' + escapeHtml(u.username) + '</strong>' + (u.role === 'admin' ? ' <span style="font-family:JetBrains Mono,monospace;font-size:0.7em;padding:2px 6px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff;vertical-align:middle;">ADMIN</span>' : '') + '</td>' +
-            '<td>' + escapeHtml(u.email) + '</td>' +
+            '<td>' + escapeHtml(u.phone || u.email || '') + '</td>' +
             '<td style="white-space:nowrap;">' + new Date(u.createdAt || Date.now()).toLocaleDateString() + '</td>' +
             '<td style="white-space:nowrap;">' + humanTime(u.lastSeen, now) + '</td>' +
             '<td><span class="admin-online-dot' + (on ? ' online' : '') + '">' + (on ? tstr('online') : tstr('offline')) + '</span></td>' +
