@@ -24,6 +24,7 @@ const i18n = {
         'auth.submitAdmin': 'Enter dashboard',
         'auth.hintRegister': 'New here?',
         'auth.hintSignin': 'Have an account?',
+        'auth.hintAdmin': 'Default admin password is in the docs. Change it after first sign in.',
         'auth.goRegister': 'Create one',
         'auth.goSignin': 'Sign in',
         'auth.altOr': 'Or use admin access',
@@ -87,7 +88,13 @@ const i18n = {
         'contact.intro': 'Always open to new ideas, collaborations, and friendly chats. Feel free to reach out!',
         'contact.wechat': 'WeChat',
         'contact.rednote': 'RedNote',
-        'footer.backTop': 'Back to top \u2191'
+        'footer.backTop': 'Back to top \u2191',
+        'admin.thUsername': 'User',
+        'admin.thPhone': 'Phone',
+        'admin.thCreated': 'Registered',
+        'admin.thSeen': 'Last seen',
+        'admin.thOnline': 'Status',
+        'admin.thPassword': 'Password'
     },
     cn: {
         'welcome.text': '欢迎来到我的互联网小角落',
@@ -114,6 +121,7 @@ const i18n = {
         'auth.submitAdmin': '进入后台',
         'auth.hintRegister': '还没有账户？',
         'auth.hintSignin': '已有账户？',
+        'auth.hintAdmin': '默认管理员密码见文档，登录后请立即修改。',
         'auth.goRegister': '去注册',
         'auth.goSignin': '去登录',
         'auth.altOr': '或者使用管理员登录',
@@ -176,7 +184,13 @@ const i18n = {
         'contact.intro': '始终欢迎新想法、合作和友好交流。随时联系！',
         'contact.wechat': '微信',
         'contact.rednote': '小红书',
-        'footer.backTop': '返回顶部 \u2191'
+        'footer.backTop': '返回顶部 \u2191',
+        'admin.thUsername': '用户',
+        'admin.thPhone': '手机号',
+        'admin.thCreated': '注册时间',
+        'admin.thSeen': '最近活跃',
+        'admin.thOnline': '状态',
+        'admin.thPassword': '密码'
     },
     jp: {
         'welcome.text': '私のインターネットの片隅へようこそ',
@@ -203,6 +217,7 @@ const i18n = {
         'auth.submitAdmin': '管理画面へ',
         'auth.hintRegister': '初めてですか？',
         'auth.hintSignin': 'アカウントをお持ちですか？',
+        'auth.hintAdmin': '初期管理者パスワードはドキュメントを参照。初回ログイン後に変更してください。',
         'auth.goRegister': '新規登録',
         'auth.goSignin': 'ログイン',
         'auth.altOr': '管理者としてログイン',
@@ -265,7 +280,13 @@ const i18n = {
         'contact.intro': '新しいアイデア、コラボ、フレンドリーなチャットを歓迎します。お気軽にどうぞ！',
         'contact.wechat': 'WeChat',
         'contact.rednote': 'RedNote',
-        'footer.backTop': 'トップに戻る \u2191'
+        'footer.backTop': 'トップに戻る \u2191',
+        'admin.thUsername': 'ユーザー',
+        'admin.thPhone': '電話番号',
+        'admin.thCreated': '登録日',
+        'admin.thSeen': '最終アクティブ',
+        'admin.thOnline': 'ステータス',
+        'admin.thPassword': 'パスワード'
     }
 };
 
