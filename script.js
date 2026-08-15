@@ -991,7 +991,7 @@ async function emailSendCode(email, code, mode) {
             return true;
         } catch (e) { return false; }
     }
-    return false;
+    return 'demo';
 }
 
 const HEARTBEAT_ID = (Sget('li.hbid.v1', null) || (crypto && crypto.randomUUID ? crypto.randomUUID() : ('h_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36))));
@@ -1334,15 +1334,9 @@ async function sendOtp(mode) {
         return;
     }
     const key = (mode || 'otp') + ':' + email.toLowerCase();
-    const last = otpStore.codes[key];
-    const now = Date.now();
-    if (last && last.expAt - now > (5 * 60 * 1000 - 60000)) {
-        showToast(tstr('codeSentWait'), 'warn');
-        return;
-    }
     const code = genCode();
     const res = await emailSendCode(email, code, mode);
-    const expAt = now + 5 * 60 * 1000;
+    const expAt = Date.now() + 5 * 60 * 1000;
     otpStore.codes[key] = { code, expAt, try: 0 };
     const btn = document.querySelector('[data-otp="' + (mode || '') + '"]');
     if (btn) {
@@ -1363,10 +1357,21 @@ async function sendOtp(mode) {
             }
         }, 1000);
     }
-    if (res === 'demo') showToast(tstr('codeSentDemo') + ' ' + code, 'ok');
-    else if (res === true) showToast(tstr('codeSent'), 'ok');
+    if (res === 'demo') {
+        showToast(tstr('codeSentDemo') + ' ' + code, 'ok');
+        const codeInput = document.querySelector('[data-auth-form="' + (mode || '') + '"] [name=code]');
+        if (codeInput) {
+            codeInput.setAttribute('placeholder', tstr('codeSentDemo') + ' ' + code);
+            setTimeout(() => {
+                if (codeInput.getAttribute('placeholder') && codeInput.getAttribute('placeholder').indexOf(code) >= 0) {
+                    codeInput.removeAttribute('placeholder');
+                }
+            }, 15 * 60 * 1000);
+        }
+    } else if (res === true) showToast(tstr('codeSent'), 'ok');
     else showToast(tstr('codeSendFail'), 'err');
 }
+window._otpStore = otpStore;
 function verifyOtp(email, code, mode) {
     if (!email || !code) return false;
     const key = (mode || 'otp') + ':' + email.toLowerCase();
