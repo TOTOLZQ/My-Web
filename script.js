@@ -2,6 +2,28 @@ const i18n = {
     en: {
         'welcome.text': 'Welcome to my corner of the internet',
         'welcome.enter': 'Enter',
+        'welcome.tag': 'Maker · MicroPython Developer',
+        'welcome.metaProj': 'Projects',
+        'welcome.metaLicense': 'License',
+        'welcome.metaSince': 'Since',
+        'admin.sysInfo': 'System info',
+        'admin.activity': 'Recent activity',
+        'admin.export': 'Export',
+        'admin.searchPh': 'Search users...',
+        'admin.sysVersion': 'Version',
+        'admin.sysStorage': 'Storage',
+        'admin.sysSync': 'Last sync',
+        'admin.sysLang': 'Language',
+        'admin.sysUsers': 'Total users',
+        'admin.sysVisits': 'Total visits',
+        'admin.actLogin': 'Admin logged in',
+        'admin.actUserNew': 'New user registered',
+        'admin.actUserDel': 'User deleted',
+        'admin.actPass': 'Password changed',
+        'admin.actKick': 'User kicked',
+        'admin.actEgg': 'Egg found',
+        'admin.actVisit': 'New visit',
+        'admin.noActivity': 'No recent activity',
         'egg.collected': 'Eggs',
         'nav.about': 'About',
         'nav.projects': 'Projects',
@@ -47,6 +69,26 @@ const i18n = {
         'admin.thPassword': 'Password',
         'admin.safeDelete': 'Unlock delete actions',
         'admin.safeHint': 'Toggle on to enable the Delete button per row. Off by default to prevent accidents.',
+        'admin.sortNew': 'Newest first',
+        'admin.sortOld': 'Oldest first',
+        'admin.sortName': 'Name (A-Z)',
+        'admin.sortOnline': 'Online first',
+        'admin.refreshed': 'Data refreshed',
+        'admin.noResults': 'No users match your search',
+        'admin.exportFail': 'Export failed',
+        'admin.rows': 'users',
+        'admin.filterAll': 'All',
+        'admin.filterOnline': 'Online',
+        'admin.filterOffline': 'Offline',
+        'admin.bulkSel': 'selected',
+        'admin.bulkDel': 'Delete selected',
+        'admin.bulkNone': 'Select rows first',
+        'admin.bulkConfirm': 'Delete the selected users?',
+        'admin.dangerTitle': 'Danger zone',
+        'admin.dangerHint': 'Wipe local data and sign out. Cannot be undone.',
+        'admin.reset': 'Reset local data',
+        'admin.resetConfirm': 'Reset all local data and sign out?',
+        'admin.resetDone': 'Local data reset',
         'auth.adminHint': 'Default admin password is in the docs. Change it after first sign in.',
         'auth.adminGo': 'Enter dashboard',
         'hero.status': 'Available for collaboration',
@@ -90,6 +132,28 @@ const i18n = {
     cn: {
         'welcome.text': '欢迎来到我的互联网小角落',
         'welcome.enter': '进入',
+        'welcome.tag': 'Maker · MicroPython 开发者',
+        'welcome.metaProj': '项目',
+        'welcome.metaLicense': '协议',
+        'welcome.metaSince': '始于',
+        'admin.sysInfo': '系统信息',
+        'admin.activity': '最近活动',
+        'admin.export': '导出',
+        'admin.searchPh': '搜索用户...',
+        'admin.sysVersion': '版本',
+        'admin.sysStorage': '存储',
+        'admin.sysSync': '上次同步',
+        'admin.sysLang': '语言',
+        'admin.sysUsers': '总用户数',
+        'admin.sysVisits': '总访问量',
+        'admin.actLogin': '管理员登录',
+        'admin.actUserNew': '新用户注册',
+        'admin.actUserDel': '用户被删除',
+        'admin.actPass': '密码已修改',
+        'admin.actKick': '用户被踢出',
+        'admin.actEgg': '发现彩蛋',
+        'admin.actVisit': '新访问',
+        'admin.noActivity': '暂无最近活动',
         'egg.collected': '彩蛋',
         'nav.about': '关于',
         'nav.projects': '项目',
@@ -135,6 +199,26 @@ const i18n = {
         'admin.thPassword': '密码',
         'admin.safeDelete': '开启删除操作',
         'admin.safeHint': '开启后每行的删除按钮才可用，默认关闭以防误操作。',
+        'admin.sortNew': '最新优先',
+        'admin.sortOld': '最早优先',
+        'admin.sortName': '名称 (A-Z)',
+        'admin.sortOnline': '在线优先',
+        'admin.refreshed': '数据已刷新',
+        'admin.noResults': '没有匹配的用户',
+        'admin.exportFail': '导出失败',
+        'admin.rows': '位用户',
+        'admin.filterAll': '全部',
+        'admin.filterOnline': '在线',
+        'admin.filterOffline': '离线',
+        'admin.bulkSel': '已选',
+        'admin.bulkDel': '批量删除',
+        'admin.bulkNone': '请先选择用户',
+        'admin.bulkConfirm': '确定删除选中的用户？',
+        'admin.dangerTitle': '危险操作',
+        'admin.dangerHint': '清空本地数据并退出登录，操作不可恢复。',
+        'admin.reset': '重置本地数据',
+        'admin.resetConfirm': '确定清空所有本地数据并退出？',
+        'admin.resetDone': '本地数据已重置',
         'auth.adminHint': '默认管理员密码见文档，首次登录后请立即修改。',
         'auth.adminGo': '进入后台',
         'hero.status': '欢迎合作',
@@ -178,6 +262,28 @@ const i18n = {
     jp: {
         'welcome.text': '私のインターネットの片隅へようこそ',
         'welcome.enter': '入る',
+        'welcome.tag': 'Maker · MicroPython 開発者',
+        'welcome.metaProj': 'プロジェクト',
+        'welcome.metaLicense': 'ライセンス',
+        'welcome.metaSince': '開始',
+        'admin.sysInfo': 'システム情報',
+        'admin.activity': '最近のアクティビティ',
+        'admin.export': 'エクスポート',
+        'admin.searchPh': 'ユーザーを検索...',
+        'admin.sysVersion': 'バージョン',
+        'admin.sysStorage': 'ストレージ',
+        'admin.sysSync': '最終同期',
+        'admin.sysLang': '言語',
+        'admin.sysUsers': '総ユーザー数',
+        'admin.sysVisits': '合計訪問',
+        'admin.actLogin': '管理者ログイン',
+        'admin.actUserNew': '新規ユーザー登録',
+        'admin.actUserDel': 'ユーザー削除',
+        'admin.actPass': 'パスワード変更',
+        'admin.actKick': 'ユーザー強制ログアウト',
+        'admin.actEgg': 'エッグ発見',
+        'admin.actVisit': '新規訪問',
+        'admin.noActivity': '最近のアクティビティなし',
         'egg.collected': 'エッグ',
         'nav.about': '自己紹介',
         'nav.projects': 'プロジェクト',
@@ -223,6 +329,26 @@ const i18n = {
         'admin.thPassword': 'パスワード',
         'admin.safeDelete': '削除操作を有効化',
         'admin.safeHint': 'オンにすると各行の削除ボタンが有効になります。誤操作防止のためデフォルトはオフです。',
+        'admin.sortNew': '新しい順',
+        'admin.sortOld': '古い順',
+        'admin.sortName': '名前 (A-Z)',
+        'admin.sortOnline': 'オンライン優先',
+        'admin.refreshed': 'データを更新しました',
+        'admin.noResults': '該当するユーザーはいません',
+        'admin.exportFail': 'エクスポート失敗',
+        'admin.rows': '人',
+        'admin.filterAll': '全て',
+        'admin.filterOnline': 'オンライン',
+        'admin.filterOffline': 'オフライン',
+        'admin.bulkSel': '選択中',
+        'admin.bulkDel': '選択を削除',
+        'admin.bulkNone': '行を選択してください',
+        'admin.bulkConfirm': '選択したユーザーを削除しますか？',
+        'admin.dangerTitle': '危険ゾーン',
+        'admin.dangerHint': 'ローカルデータを消去してログアウトします。元に戻せません。',
+        'admin.reset': 'ローカルデータをリセット',
+        'admin.resetConfirm': 'ローカルデータを消去してログアウトしますか？',
+        'admin.resetDone': 'ローカルデータをリセットしました',
         'auth.adminHint': '初期管理者パスワードはドキュメントを参照。初回ログイン後に変更してください。',
         'auth.adminGo': '管理画面へ',
         'hero.status': 'コラボ募集中',
@@ -279,6 +405,12 @@ function applyI18n(lang) {
                 el.textContent = text;
             }
         }
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const dict = i18n[lang] || i18n.en;
+        const text = dict[key];
+        if (typeof text === 'string') el.placeholder = text;
     });
     const langMap = { cn: 'zh-CN', jp: 'ja', en: 'en' };
     document.documentElement.lang = langMap[lang] || 'en';
@@ -347,6 +479,8 @@ document.querySelectorAll('.section-header, .about-text, .about-visual, .project
     el.classList.add('fade-in');
     observer.observe(el);
 });
+
+document.querySelectorAll('.timeline-list').forEach(el => observer.observe(el));
 
 const welcomeScreen = document.getElementById('welcomeScreen');
 const welcomeEnter = document.getElementById('welcomeEnter');
@@ -441,6 +575,7 @@ runRain();
 welcomeEnter.addEventListener('click', () => {
     if (enterBtn.classList.contains('disabled')) return;
     welcomeScreen.classList.add('hidden');
+    document.body.classList.add('hero-entered');
     setTimeout(() => {
         welcomeScreen.style.display = 'none';
     }, 800);
@@ -1250,8 +1385,14 @@ if (!sessionStorage.getItem(VISIT_KEY)) {
 }
 
 function tstr(key) {
-    const table = navAuth[key] || { en: key };
-    return (table[currentLang] != null ? table[currentLang] : table.en) || key;
+    const table = navAuth[key];
+    if (table) {
+        return (table[currentLang] != null ? table[currentLang] : table.en) || key;
+    }
+    const dict = i18n[currentLang] || i18n.en;
+    const text = dict[key];
+    if (typeof text === 'string') return text;
+    return key;
 }
 
 function sendHeartbeat() {
@@ -1466,7 +1607,24 @@ const adminOnlineEl = document.getElementById('adminOnline');
 const adminVisitsEl = document.getElementById('adminVisits');
 const adminUsersEl = document.getElementById('adminUsers');
 const adminEggsEl = document.getElementById('adminEggs');
+const adminSearchEl = document.getElementById('adminSearch');
+const adminExportEl = document.getElementById('adminExport');
+const adminSortEl = document.getElementById('adminSort');
+const adminRefreshEl = document.getElementById('adminRefresh');
+const adminRowCountEl = document.getElementById('adminRowCount');
+const adminSysInfoEl = document.getElementById('adminSysInfo');
+const adminActivityEl = document.getElementById('adminActivity');
+const adminChipsEl = document.getElementById('adminChips');
+const adminBulkEl = document.getElementById('adminBulk');
+const adminBulkCountEl = document.getElementById('adminBulkCount');
+const adminBulkDelEl = document.getElementById('adminBulkDel');
+const adminSelectAllEl = document.getElementById('adminSelectAll');
+const adminResetEl = document.getElementById('adminReset');
 let adminOpen = false;
+let adminSearchQuery = '';
+let adminSortBy = 'new';
+let adminFilter = 'all';
+const adminSelected = new Set();
 let currentAdminToken = null;
 
 function renderNavAuth() {
@@ -1696,16 +1854,31 @@ function renderAdminDashboard() {
     const hearts = pruneAndGetHearts();
     const online = countOnline(hearts);
     const visits = dbCache.visits || 0;
-    const users = dbCache.users || [];
+    let users = dbCache.users || [];
     const eggs = (dbCache.eggs || []).length;
     animateNumber(adminOnlineEl, online);
     animateNumber(adminVisitsEl, visits);
     animateNumber(adminUsersEl, users.length);
     animateNumber(adminEggsEl, eggs);
+    if (adminSearchQuery) {
+        const q = adminSearchQuery.toLowerCase();
+        users = users.filter(u =>
+            (u.username || '').toLowerCase().includes(q) ||
+            (u.email || '').toLowerCase().includes(q)
+        );
+    }
+    if (adminFilter === 'online' || adminFilter === 'offline') {
+        users = users.filter(u => isOnlineNow(u.username, hearts) === (adminFilter === 'online'));
+    }
+    users = sortUsers(users.slice(), adminSortBy, hearts);
+    if (adminRowCountEl) {
+        adminRowCountEl.textContent = users.length + ' ' + tstr('admin.rows');
+    }
     const tbody = adminUsersBody;
     const thead = tbody ? tbody.closest('table').querySelector('thead tr') : null;
-    if (thead && thead.children.length < 7) {
+    if (thead && thead.children.length < 8) {
         thead.innerHTML =
+            '<th class="th-check"><input type="checkbox" id="adminSelectAll" aria-label="' + tstr('admin.bulkSel') + '" /></th>' +
             '<th data-i18n="admin.thUsername">' + tstr('thUsername') + '</th>' +
             '<th data-i18n="admin.thEmail">' + tstr('thEmail') + '</th>' +
             '<th data-i18n="admin.thCreated">' + tstr('thCreated') + '</th>' +
@@ -1713,38 +1886,206 @@ function renderAdminDashboard() {
             '<th data-i18n="admin.thOnline">' + tstr('thOnline') + '</th>' +
             '<th data-i18n="admin.thPassword">' + tstr('thPassword') + '</th>' +
             '<th></th>';
+        const sa = thead.querySelector('#adminSelectAll');
+        if (sa) sa.addEventListener('change', onAdminSelectAll);
     }
     if (!tbody) return;
     if (!users.length) {
-        tbody.innerHTML = '<tr><td colspan="7" class="admin-empty">' + tstr('emptyUsers') + '</td></tr>';
-        return;
+        const msg = adminSearchQuery || adminFilter !== 'all' ? tstr('admin.noResults') : tstr('emptyUsers');
+        tbody.innerHTML = '<tr><td colspan="8" class="admin-empty">' + msg + '</td></tr>';
+    } else {
+        const now = Date.now();
+        const armed = adminSafeDelete ? adminSafeDelete.checked : false;
+        const rows = users.map((u, i) => {
+            const on = isOnlineNow(u.username, hearts);
+            const pwDec = decUserPwd(u.passHash || '');
+            const checked = adminSelected.has(u.username) ? ' checked' : '';
+            return '<tr data-user="' + escapeHtml(u.username) + '" class="' + (i % 2 ? 'alt' : '') + '">' +
+                '<td class="td-check"><input type="checkbox" class="admin-row-check" data-user="' + escapeHtml(u.username) + '"' + checked + ' /></td>' +
+                '<td><strong>' + escapeHtml(u.username) + '</strong>' + (u.role === 'admin' ? ' <span class="admin-badge-grad">ADMIN</span>' : '') + '</td>' +
+                '<td>' + escapeHtml(u.email || '') + '</td>' +
+                '<td class="nowrap">' + new Date(u.createdAt || Date.now()).toLocaleDateString() + '</td>' +
+                '<td class="nowrap">' + humanTime(u.lastSeen, now) + '</td>' +
+                '<td><span class="admin-online-dot' + (on ? ' online' : '') + '">' + (on ? tstr('online') : tstr('offline')) + '</span></td>' +
+                '<td>' +
+                  '<div class="admin-pwd-cell">' +
+                    '<code class="pwd-cell" data-pwd="' + escapeHtml(pwDec) + '">\u2022\u2022\u2022\u2022\u2022\u2022</code>' +
+                    '<button type="button" class="admin-row-toggle" data-act="togglepwd" data-user="' + escapeHtml(u.username) + '" title="' + tstr('showPwd') + '">' + tstr('showPwd') + '</button>' +
+                  '</div>' +
+                '</td>' +
+                '<td class="admin-actions-cell">' +
+                  '<div class="admin-row-actions">' +
+                    '<button type="button" class="admin-row-kick" data-act="kick" data-user="' + escapeHtml(u.username) + '">' + tstr('kickUser') + '</button>' +
+                    '<button type="button" class="admin-row-delete' + (armed ? ' armed' : '') + '" data-act="deluser" data-user="' + escapeHtml(u.username) + '">Delete</button>' +
+                  '</div>' +
+                '</td>' +
+                '</tr>';
+        }).join('');
+        tbody.innerHTML = rows;
     }
-    const now = Date.now();
-    const armed = adminSafeDelete ? adminSafeDelete.checked : false;
-    const rows = users.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).map((u, i) => {
-        const on = isOnlineNow(u.username, hearts);
-        const pwDec = decUserPwd(u.passHash || '');
-        return '<tr data-user="' + escapeHtml(u.username) + '" class="' + (i % 2 ? 'alt' : '') + '">' +
-            '<td><strong>' + escapeHtml(u.username) + '</strong>' + (u.role === 'admin' ? ' <span class="admin-badge-grad">ADMIN</span>' : '') + '</td>' +
-            '<td>' + escapeHtml(u.email || '') + '</td>' +
-            '<td class="nowrap">' + new Date(u.createdAt || Date.now()).toLocaleDateString() + '</td>' +
-            '<td class="nowrap">' + humanTime(u.lastSeen, now) + '</td>' +
-            '<td><span class="admin-online-dot' + (on ? ' online' : '') + '">' + (on ? tstr('online') : tstr('offline')) + '</span></td>' +
-            '<td>' +
-              '<div class="admin-pwd-cell">' +
-                '<code class="pwd-cell" data-pwd="' + escapeHtml(pwDec) + '">\u2022\u2022\u2022\u2022\u2022\u2022</code>' +
-                '<button type="button" class="admin-row-toggle" data-act="togglepwd" data-user="' + escapeHtml(u.username) + '" title="' + tstr('showPwd') + '">' + tstr('showPwd') + '</button>' +
-              '</div>' +
-            '</td>' +
-            '<td class="admin-actions-cell">' +
-              '<div class="admin-row-actions">' +
-                '<button type="button" class="admin-row-kick" data-act="kick" data-user="' + escapeHtml(u.username) + '">' + tstr('kickUser') + '</button>' +
-                '<button type="button" class="admin-row-delete' + (armed ? ' armed' : '') + '" data-act="deluser" data-user="' + escapeHtml(u.username) + '">Delete</button>' +
-              '</div>' +
-            '</td>' +
-            '</tr>';
-    }).join('');
-    tbody.innerHTML = rows;
+    updateAdminBulkBar(users);
+    renderAdminSysInfo();
+    renderAdminActivity();
+}
+
+function updateAdminBulkBar(users) {
+    const live = (users || []).filter(u => adminSelected.has(u.username));
+    if (adminBulkEl) {
+        adminBulkEl.hidden = live.length === 0;
+    }
+    if (adminBulkCountEl) {
+        adminBulkCountEl.textContent = String(live.length);
+    }
+    if (adminSelectAllEl) {
+        const allSel = users.length > 0 && live.length === users.length;
+        adminSelectAllEl.checked = allSel;
+        adminSelectAllEl.indeterminate = live.length > 0 && !allSel;
+    }
+}
+
+function onAdminSelectAll(e) {
+    const checked = e.target.checked;
+    const tbody = adminUsersBody;
+    if (!tbody) return;
+    tbody.querySelectorAll('tr[data-user] .admin-row-check').forEach(cb => {
+        const u = cb.getAttribute('data-user');
+        if (!u) return;
+        cb.checked = checked;
+        if (checked) adminSelected.add(u); else adminSelected.delete(u);
+    });
+    const hearts = pruneAndGetHearts();
+    let users = dbCache.users || [];
+    if (adminSearchQuery) {
+        const q = adminSearchQuery.toLowerCase();
+        users = users.filter(u => (u.username || '').toLowerCase().includes(q) || (u.email || '').toLowerCase().includes(q));
+    }
+    if (adminFilter === 'online' || adminFilter === 'offline') {
+        users = users.filter(u => isOnlineNow(u.username, hearts) === (adminFilter === 'online'));
+    }
+    updateAdminBulkBar(users);
+}
+
+function performAdminBulkDelete() {
+    const targets = Array.from(adminSelected);
+    if (!targets.length) { showToast(tstr('admin.bulkNone'), 'warn'); return; }
+    if (!adminSafeDelete || !adminSafeDelete.checked) { showToast(tstr('admin.safeHint'), 'warn'); return; }
+    if (!confirm(tstr('admin.bulkConfirm') + '\n' + targets.join(', '))) return;
+    targets.forEach(username => {
+        if (!pendingUsersDelete.includes(username)) pendingUsersDelete.push(username);
+        const i = pendingUsersAdd.findIndex(u => u.username === username);
+        if (i >= 0) pendingUsersAdd.splice(i, 1);
+        adminSelected.delete(username);
+    });
+    savePendingLocal();
+    applyPendingToDbCache();
+    scheduleDbPush();
+    renderAdminDashboard();
+    showToast(tstr('deleted'), 'warn');
+}
+
+function performAdminReset() {
+    if (!confirm(tstr('admin.resetConfirm'))) return;
+    try {
+        localStorage.removeItem('li.dbcache.v1');
+        localStorage.removeItem('li.dbpending.v1');
+        clearSession();
+    } catch (_) {}
+    pendingUsersAdd = [];
+    pendingUsersDelete = [];
+    pendingUserUpdates = {};
+    pendingHeartbeatTs = 0;
+    pendingAdminPass = null;
+    adminSelected.clear();
+    dbCache = { users: [], hearts: {}, visits: 0, adminPass: 'admin123', eggs: [] };
+    adminOpen = false;
+    renderNavAuth();
+    closeModal('adminModal');
+    setSyncInterval(SYNC_MS_IDLE);
+    showToast(tstr('admin.resetDone'), 'ok');
+}
+
+function sortUsers(arr, by, hearts) {
+    hearts = hearts || pruneAndGetHearts();
+    const cmp = {
+        new: (a, b) => (b.createdAt || 0) - (a.createdAt || 0),
+        old: (a, b) => (a.createdAt || 0) - (b.createdAt || 0),
+        name: (a, b) => (a.username || '').toLowerCase().localeCompare((b.username || '').toLowerCase()),
+        online: (a, b) => {
+            const oa = isOnlineNow(a.username, hearts) ? 0 : 1;
+            const ob = isOnlineNow(b.username, hearts) ? 0 : 1;
+            if (oa !== ob) return oa - ob;
+            return (b.lastSeen || 0) - (a.lastSeen || 0);
+        }
+    }[by] || (function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); });
+    return arr.sort(cmp);
+}
+
+function renderAdminSysInfo() {
+    if (!adminSysInfoEl) return;
+    const allUsers = (dbCache.users || []).length;
+    const allVisits = dbCache.visits || 0;
+    const eggsCount = (dbCache.eggs || []).length;
+    const syncTime = dbLastSync ? new Date(dbLastSync).toLocaleString() : '--';
+    const langDisplay = currentLang.toUpperCase();
+    const rows = [
+        { label: tstr('admin.sysVersion'), value: 'v1.0.0' },
+        { label: tstr('admin.sysUsers'), value: String(allUsers) },
+        { label: tstr('admin.sysVisits'), value: String(allVisits) },
+        { label: tstr('admin.sysSync'), value: syncTime },
+        { label: tstr('admin.sysLang'), value: langDisplay }
+    ];
+    adminSysInfoEl.innerHTML = rows.map(r =>
+        '<div class="admin-info-row"><span class="admin-info-key">' + escapeHtml(r.label) + '</span><span class="admin-info-val">' + escapeHtml(r.value) + '</span></div>'
+    ).join('');
+}
+
+function renderAdminActivity() {
+    if (!adminActivityEl) return;
+    const acts = [];
+    const users = dbCache.users || [];
+    users.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).slice(0, 3).forEach(u => {
+        if (u.createdAt) acts.push({ ts: u.createdAt, text: tstr('admin.actUserNew') + ': ' + u.username });
+    });
+    const hearts = pruneAndGetHearts();
+    for (const v of Object.values(hearts)) {
+        if (v && v.username && v.ts) acts.push({ ts: v.ts, text: tstr('admin.actLogin') + ': ' + v.username });
+    }
+    const eggsArr = dbCache.eggs || [];
+    eggsArr.slice(-3).forEach(e => {
+        acts.push({ ts: Date.now() - Math.random() * 3600000, text: tstr('admin.actEgg') });
+    });
+    acts.sort((a, b) => (b.ts || 0) - (a.ts || 0));
+    if (!acts.length) {
+        adminActivityEl.innerHTML = '<div class="admin-info-empty">' + tstr('admin.noActivity') + '</div>';
+    } else {
+        adminActivityEl.innerHTML = acts.slice(0, 6).map(a =>
+            '<div class="admin-activity-row">' +
+                '<span class="admin-activity-time">' + humanTime(a.ts) + '</span>' +
+                '<span class="admin-activity-text">' + escapeHtml(a.text) + '</span>' +
+            '</div>'
+        ).join('');
+    }
+}
+
+function exportUsersCSV() {
+    const users = dbCache.users || [];
+    const headers = ['Username', 'Email', 'Registered', 'LastSeen', 'Role'];
+    const rows = users.map(u => [
+        u.username || '',
+        u.email || '',
+        u.createdAt ? new Date(u.createdAt).toISOString() : '',
+        u.lastSeen ? new Date(u.lastSeen).toISOString() : '',
+        u.role || 'user'
+    ]);
+    const csv = [headers, ...rows].map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'users-' + new Date().toISOString().slice(0, 10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Exported ' + users.length + ' users', 'ok');
 }
 
 function animateNumber(el, to, duration) {
@@ -1801,9 +2142,87 @@ if (adminSafeDelete) {
     adminSafeDelete.addEventListener('change', renderAdminDashboard);
 }
 
+if (adminChipsEl) {
+    adminChipsEl.addEventListener('click', (e) => {
+        const chip = e.target.closest('.admin-chip');
+        if (!chip) return;
+        adminChipsEl.querySelectorAll('.admin-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        adminFilter = chip.getAttribute('data-filter') || 'all';
+        renderAdminDashboard();
+    });
+}
+
+if (adminSelectAllEl) {
+    adminSelectAllEl.addEventListener('change', onAdminSelectAll);
+}
+
+if (adminBulkDelEl) {
+    adminBulkDelEl.addEventListener('click', performAdminBulkDelete);
+}
+
+if (adminResetEl) {
+    adminResetEl.addEventListener('click', performAdminReset);
+}
+
+if (adminSearchEl) {
+    let searchTimer = null;
+    adminSearchEl.addEventListener('input', (e) => {
+        clearTimeout(searchTimer);
+        const v = e.target.value;
+        searchTimer = setTimeout(() => {
+            adminSearchQuery = v.trim();
+            renderAdminDashboard();
+        }, 180);
+    });
+    adminSearchEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            adminSearchEl.value = '';
+            adminSearchQuery = '';
+            renderAdminDashboard();
+        }
+    });
+}
+
+if (adminSortEl) {
+    adminSortEl.addEventListener('change', (e) => {
+        adminSortBy = e.target.value || 'new';
+        renderAdminDashboard();
+    });
+}
+
+if (adminRefreshEl) {
+    adminRefreshEl.addEventListener('click', () => {
+        const icon = adminRefreshEl.querySelector('svg');
+        if (icon) {
+            icon.style.transition = 'transform 0.6s ease';
+            icon.style.transform = 'rotate(360deg)';
+            setTimeout(() => { icon.style.transition = ''; icon.style.transform = ''; }, 600);
+        }
+        syncDb().then(() => {
+            renderAdminDashboard();
+            showToast(tstr('admin.refreshed'), 'ok');
+        }).catch(() => {
+            renderAdminDashboard();
+        });
+    });
+}
+
+if (adminExportEl) {
+    adminExportEl.addEventListener('click', () => {
+        try {
+            exportUsersCSV();
+        } catch (e) {
+            showToast(tstr('admin.exportFail'), 'err');
+        }
+    });
+}
+
 document.addEventListener('click', (e) => {
     const tr = e.target.closest && e.target.closest('tr[data-user]');
     if (!tr) return;
+    const rowCheck = e.target.closest('.admin-row-check');
+    if (rowCheck) return;
     const togg = e.target.closest('[data-act="togglepwd"]');
     if (togg) {
         const cell = tr.querySelector('.pwd-cell');
@@ -1849,6 +2268,24 @@ document.addEventListener('click', (e) => {
     scheduleDbPush();
     renderAdminDashboard();
     showToast(tstr('deleted'), 'warn');
+});
+
+document.addEventListener('change', (e) => {
+    const cb = e.target.closest && e.target.closest('.admin-row-check');
+    if (!cb) return;
+    const username = cb.getAttribute('data-user');
+    if (!username) return;
+    if (cb.checked) adminSelected.add(username); else adminSelected.delete(username);
+    const hearts = pruneAndGetHearts();
+    let users = dbCache.users || [];
+    if (adminSearchQuery) {
+        const q = adminSearchQuery.toLowerCase();
+        users = users.filter(u => (u.username || '').toLowerCase().includes(q) || (u.email || '').toLowerCase().includes(q));
+    }
+    if (adminFilter === 'online' || adminFilter === 'offline') {
+        users = users.filter(u => isOnlineNow(u.username, hearts) === (adminFilter === 'online'));
+    }
+    updateAdminBulkBar(users);
 });
 
 const adminLogout = document.getElementById('adminLogout');
