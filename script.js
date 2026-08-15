@@ -1428,7 +1428,7 @@ function mountCaptcha(target) {
 }
 
 (function initCaptchas(){
-    ['signin', 'register', 'admin'].forEach(function(t){
+    ['admin'].forEach(function(t){
         try { mountCaptcha(t); } catch(e) {}
     });
 })();
@@ -1613,8 +1613,8 @@ function renderNavAuth() {
     if (!navAuthBtn) return;
     if (!me) {
         navAuthBtn.className = 'nav-auth-btn nav-auth-guest';
-        navAuthBtn.textContent = tstr('signIn');
-        navAuthBtn.setAttribute('data-i18n', 'nav.signIn');
+        navAuthBtn.textContent = tstr('admin');
+        navAuthBtn.setAttribute('data-i18n', 'nav.admin');
         return;
     }
     navAuthBtn.className = 'nav-auth-btn nav-auth-user';
@@ -1674,7 +1674,7 @@ document.querySelectorAll('.auth-tab').forEach(tab => {
         document.querySelectorAll('.auth-panel').forEach(p => {
             p.classList.toggle('auth-panel-active', p.getAttribute('data-auth-panel') === which);
         });
-        ['signin', 'register', 'admin'].forEach(k => setAuthError(k, ''));
+        setAuthError('admin', '');
     });
 });
 
@@ -1686,17 +1686,12 @@ function switchAuthTabTo(which) {
 if (navAuthBtn) {
     navAuthBtn.addEventListener('click', () => {
         const me = restoreSession();
-        if (!me) {
-            switchAuthTabTo('signin');
-            openModal('authModal');
+        if (me && me.role === 'admin') {
+            openAdminDashboard();
             return;
         }
-        if (me.role === 'admin') {
-            openAdminDashboard();
-        } else {
-            switchAuthTabTo('signin');
-            openModal('authModal');
-        }
+        switchAuthTabTo('admin');
+        openModal('authModal');
     });
     navAuthBtn.addEventListener('contextmenu', (e) => {
         const me = restoreSession();
@@ -1711,83 +1706,6 @@ if (navAuthBtn) {
 function isValidPhone(s) {
     return /^\+?[0-9]{7,15}$/.test(String(s || '').trim());
 }
-
-document.querySelectorAll('[data-auth-form="register"]').forEach(form => {
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        try {
-        const data = Object.fromEntries(new FormData(form).entries());
-        const username = (data.username || '').trim();
-        const phone = (data.phone || '').trim();
-        const password = data.password || '';
-        const confirm = data.confirm || '';
-        const code = (data.code || '').trim();
-        setAuthError('register', '');
-        if (!username || !phone || !password || !confirm || !code) return setAuthError('register', tstr('required'));
-        if (username.length < 2) return setAuthError('register', tstr('userShort'));
-        if (password.length < 4) return setAuthError('register', tstr('passShort'));
-        if (password !== confirm) return setAuthError('register', tstr('confirmMismatch'));
-        if (!isValidPhone(phone)) return setAuthError('register', tstr('phoneInvalid'));
-        if (!verifyCaptcha(code)) { refreshCaptcha('register'); return setAuthError('register', tstr('captchaFail')); }
-        if (findUser(username)) return setAuthError('register', tstr('userExists'));
-        const users0 = dbCache.users || [];
-        if (users0.find(u => (u.phone || '').toLowerCase() === phone.toLowerCase())) return setAuthError('register', tstr('phoneExists'));
-        const newUser = {
-            username,
-            phone,
-            email: '',
-            passHash: encUserPwd(password),
-            role: 'user',
-            createdAt: Date.now(),
-            lastSeen: Date.now()
-        };
-        pendingUsersAdd.push(newUser);
-        savePendingLocal();
-        applyPendingToDbCache();
-        scheduleDbPush();
-        setAuthError('register', '');
-        switchAuthTabTo('signin');
-        const f = document.querySelector('[data-auth-form="signin"]');
-        if (f) {
-            f.username && (f.username.value = username);
-            f.password && (f.password.value = '');
-        }
-        showToast(tstr('registerOk'), 'ok');
-        } catch (err) {
-            showToast(err.message || 'Error', 'err');
-        }
-    });
-});
-
-document.querySelectorAll('[data-auth-form="signin"]').forEach(form => {
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        try {
-        const data = Object.fromEntries(new FormData(form).entries());
-        const username = (data.username || '').trim();
-        const password = data.password || '';
-        const code = (data.code || '').trim();
-        setAuthError('signin', '');
-        if (!username || !password || !code) return setAuthError('signin', tstr('required'));
-        if (!verifyCaptcha(code)) { refreshCaptcha('signin'); return setAuthError('signin', tstr('captchaFail')); }
-        const user = findUser(username);
-        let match = false;
-        if (user) {
-            if ((user.passHash || '').startsWith('ev1_')) match = decUserPwd(user.passHash) === password;
-            else if ((user.passHash || '').startsWith('fh1_')) match = user.passHash === hashPass(password);
-            else match = user.passHash === password;
-        }
-        if (!match) return setAuthError('signin', tstr('invalidCreds'));
-        writeSession(user.username, user.role);
-        renderNavAuth();
-        showToast(tstr('signInOk') + ' · ' + user.username, 'ok');
-        closeModal('authModal');
-        if (user.role === 'admin') setTimeout(openAdminDashboard, 200);
-        } catch (err) {
-            showToast(err.message || 'Error', 'err');
-        }
-    });
-});
 
 document.querySelectorAll('[data-auth-form="admin"]').forEach(form => {
     form.addEventListener('submit', (e) => {
