@@ -2621,17 +2621,17 @@ a {
     grid-template-columns: repeat(3, 1fr);
     gap: 6px;
     background: var(--glass-bg);
-    padding: 4px;
+    padding: 5px;
     border-radius: 100px;
     border: 1px solid var(--glass-border);
-    margin-bottom: 22px;
+    margin-bottom: 26px;
     box-shadow: var(--glass-shadow);
 }
 
 .auth-tab {
     background: none;
     border: none;
-    padding: 8px 10px;
+    padding: 10px 10px;
     border-radius: 100px;
     cursor: pointer;
     font-size: 0.82rem;
@@ -2673,13 +2673,13 @@ a {
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
 }
 
 .field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .field > span {
@@ -2687,17 +2687,18 @@ a {
     font-weight: 600;
     color: var(--text-muted);
     letter-spacing: 0.02em;
+    padding-left: 2px;
 }
 
 .field input {
-    height: 42px;
-    padding: 0 14px;
-    border-radius: 12px;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 14px;
     border: 1px solid var(--glass-border);
     background: var(--glass-bg);
     color: var(--text);
     font-family: var(--font);
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     outline: none;
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
@@ -2725,8 +2726,12 @@ a {
 .auth-hint {
     font-size: 0.76rem;
     color: var(--text-dim);
-    margin-top: 2px;
-    line-height: 1.6;
+    margin-top: 4px;
+    line-height: 1.65;
+    padding: 10px 12px;
+    background: rgba(124, 92, 252, 0.06);
+    border: 1px solid rgba(124, 92, 252, 0.12);
+    border-radius: 10px;
 }
 
 .auth-error {
@@ -2736,7 +2741,7 @@ a {
     background: rgba(224, 86, 107, 0.08);
     border: 1px solid rgba(224, 86, 107, 0.25);
     border-radius: 10px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     line-height: 1.5;
     display: none;
     animation: shake 0.4s ease;
@@ -2755,7 +2760,10 @@ a {
 .auth-submit {
     width: 100%;
     justify-content: center;
-    margin-top: 6px;
+    margin-top: 10px;
+    height: 48px;
+    font-size: 0.95rem;
+    border-radius: 14px;
 }
 
 .modal-card.admin-card {
@@ -3065,8 +3073,8 @@ a {
 
 .field-with-act .field-row {
     display: flex;
-    gap: 8px;
-    align-items: center;
+    gap: 10px;
+    align-items: stretch;
 }
 .field-with-act .field-row input {
     flex: 1;
@@ -3075,8 +3083,9 @@ a {
 .otp-btn {
     white-space: nowrap;
     flex-shrink: 0;
-    padding: 9px 12px;
-    border-radius: 10px;
+    height: 48px;
+    padding: 0 14px;
+    border-radius: 14px;
     font-size: 0.8rem;
     border: 1px solid var(--glass-border);
     background: var(--glass-bg);
@@ -3085,6 +3094,9 @@ a {
     font-weight: 600;
     font-family: var(--font);
     transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 .otp-btn:hover:not(:disabled) {
     border-color: rgba(99, 102, 241, 0.5);
@@ -3095,8 +3107,10 @@ a {
 
 .vk-trigger {
     flex-shrink: 0;
-    padding: 9px 10px;
-    border-radius: 10px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 14px;
     border: 1px solid var(--glass-border);
     background: var(--glass-bg);
     color: var(--text-mute);
@@ -3185,7 +3199,9 @@ a {
 .vk-actions .btn { flex: 1; justify-content: center; }
 
 .auth-turnstile-wrap {
-    margin-top: 16px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--glass-border);
     display: flex;
     justify-content: center;
     min-height: 65px;
@@ -3320,13 +3336,22 @@ a {
     }
     .auth-tab {
         font-size: 0.75rem;
-        padding: 7px 6px;
+        padding: 8px 6px;
     }
     .modal-card {
         padding: 22px 18px;
         border-radius: 22px;
     }
-    .field input {
-        height: 40px;
+    .field input,
+    .otp-btn,
+    .vk-trigger,
+    .auth-submit {
+        height: 44px;
+    }
+    .vk-trigger {
+        width: 44px;
+    }
+    .auth-form {
+        gap: 14px;
     }
 }
