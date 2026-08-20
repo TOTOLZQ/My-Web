@@ -499,10 +499,10 @@
                     <text x="60" y="74" text-anchor="middle" fill="url(#authGrad)" font-size="28" font-weight="800" font-family="Inter">li</text>
                 </svg>
             </div>
-            <div class="auth-tabs">
-                <button type="button" class="auth-tab" data-auth-tab="signin" data-i18n="auth.signin">auth.signin</button>
-                <button type="button" class="auth-tab" data-auth-tab="register" data-i18n="auth.register">auth.register</button>
-                <button type="button" class="auth-tab active" data-auth-tab="admin" data-i18n="auth.admin">auth.admin</button>
+            <div class="auth-tabs" role="tablist" aria-label="Authentication">
+                <button type="button" class="auth-tab" role="tab" aria-selected="false" tabindex="-1" data-auth-tab="signin" data-i18n="auth.signin">auth.signin</button>
+                <button type="button" class="auth-tab" role="tab" aria-selected="false" tabindex="-1" data-auth-tab="register" data-i18n="auth.register">auth.register</button>
+                <button type="button" class="auth-tab active" role="tab" aria-selected="true" tabindex="0" data-auth-tab="admin" data-i18n="auth.admin">auth.admin</button>
             </div>
             <div class="auth-panels">
                 <div class="auth-panel" data-auth-panel="signin">

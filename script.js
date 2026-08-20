@@ -749,6 +749,49 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+document.addEventListener('keydown', (e) => {
+    if (!(e.ctrlKey || e.metaKey) || !e.shiftKey) return;
+    const k = (e.key || '').toLowerCase();
+    if (k === 'a') {
+        e.preventDefault();
+        const me = restoreSession();
+        if (me && me.role === 'admin') {
+            openAdminDashboard();
+        } else {
+            switchAuthTabTo('admin');
+            openModal('authModal');
+        }
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    const open = authModal && authModal.classList.contains('open');
+    if (!open) return;
+    const tabs = Array.from(document.querySelectorAll('.auth-tab'));
+    if (!tabs.length) return;
+    const activeIdx = tabs.findIndex(t => t.classList.contains('active'));
+    if ((e.key === 'ArrowRight' || e.key === 'ArrowLeft') && tabs.includes(document.activeElement)) {
+        e.preventDefault();
+        const next = e.key === 'ArrowRight' ? (activeIdx + 1) % tabs.length : (activeIdx - 1 + tabs.length) % tabs.length;
+        tabs[next].focus();
+        tabs[next].click();
+        return;
+    }
+    if (e.key === 'Tab') {
+        const focusables = Array.from(authModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'))).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    }
+});
+
 const heroName = document.querySelector('.hero .name');
 if (heroName) {
     heroName.style.cursor = 'pointer';
@@ -1649,8 +1692,13 @@ function openModal(id) {
     m.classList.add('open');
     m.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    const first = m.querySelector('input, button');
-    setTimeout(() => first && first.focus(), 150);
+    let target = null;
+    if (id === 'authModal') {
+        const panel = m.querySelector('.auth-panel-active');
+        if (panel) target = panel.querySelector('input[name="adminPass"], input[name="username"], input[name="password"], input');
+    }
+    if (!target) target = m.querySelector('input, button');
+    setTimeout(() => target && target.focus(), 100);
 }
 
 function closeModal(id) {
@@ -1659,6 +1707,8 @@ function closeModal(id) {
     m.classList.remove('open');
     m.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    const trigger = document.getElementById('navAuthBtn');
+    if (trigger && id === 'authModal') setTimeout(() => trigger.focus(), 30);
 }
 
 document.addEventListener('click', (e) => {
@@ -1689,11 +1739,19 @@ function setAuthError(formKind, msg) {
 document.querySelectorAll('.auth-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         const which = tab.getAttribute('data-auth-tab');
-        document.querySelectorAll('.auth-tab').forEach(t => t.classList.toggle('active', t === tab));
+        document.querySelectorAll('.auth-tab').forEach(t => {
+            const on = t === tab;
+            t.classList.toggle('active', on);
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+            t.tabIndex = on ? 0 : -1;
+        });
         document.querySelectorAll('.auth-panel').forEach(p => {
             p.classList.toggle('auth-panel-active', p.getAttribute('data-auth-panel') === which);
         });
         ['signin', 'register', 'admin'].forEach(k => setAuthError(k, ''));
+        const panel = document.querySelector('.auth-panel[data-auth-panel="' + which + '"]');
+        const firstInput = panel && panel.querySelector('input');
+        if (firstInput) setTimeout(() => firstInput.focus(), 30);
     });
 });
 
